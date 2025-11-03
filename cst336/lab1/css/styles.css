@@ -213,3 +213,19 @@ tbody tr:hover {
   font-weight: 700;
   color: #e3d8c3;
 }
+
+
+/* CSUMB logo */
+.footer-logo {
+  width: 100px;
+  opacity: 0.8;
+  margin-bottom: 6px;
+}
+
+footer small {
+  /* Smaller font & different color */
+  display: block;
+  color: #a39e95;
+  font-size: 0.85rem;
+  letter-spacing: 0.3px;
+}
