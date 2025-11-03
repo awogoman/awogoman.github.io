@@ -1,14 +1,131 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-  <title>Lab 1 Folder</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Alexis Wogoman Portfolio</title>
+
+  <style>
+    /* Note to grader: I have taken an HTML/PHP based web programming class prior to this one,
+    please let me know if I should simplify anything for this assignment. */
+    
+    /* Setting up color / theme */
+    :root{
+      --bg:#0a0a0c;
+      --panel:#121218;
+      --ink:#e8e5de;
+      --muted:#a39e95;
+      --accent:#7a0f1d;
+      --line:#1d1b22;
+    }
+
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      font-family: Georgia, "Times New Roman", serif;
+      color:var(--ink);
+      background:var(--bg);
+      line-height:1.6;
+    }
+
+    /* Layout */
+    header, footer, main{ padding:20px; }
+    hr{ border:none; border-top:1px solid var(--line); margin:10px 0 16px; }
+
+    /* Header + Navigation */
+    header h1{
+      margin:0 0 6px 0;
+      font-size:1.9rem;
+      letter-spacing:.5px;
+    }
+    nav{ display:flex; gap:14px; flex-wrap:wrap; }
+    nav a{
+      color:var(--ink);
+      text-decoration:none;
+      padding:6px 10px;
+      border:1px solid var(--line);
+      border-radius:8px;
+      background:var(--panel);
+    }
+    nav a:hover{ outline:2px solid var(--accent); }
+
+    /* Main */
+    main{
+      display:flex;
+      gap:24px;
+      align-items:center;
+      justify-content:center;
+      flex-wrap:wrap;
+    }
+    figure{
+      margin:0;
+      background:var(--panel);
+      border:1px solid var(--line);
+      border-radius:12px;
+      padding:12px;
+      max-width:280px;
+    }
+    figure img{ display:block; width:100%; height:auto; border-radius:8px; }
+    figcaption{ color:var(--muted); margin-top:6px; text-align:center; }
+
+    .welcome{
+      max-width:560px;
+      background:var(--panel);
+      border:1px solid var(--line);
+      border-radius:12px;
+      padding:16px 18px;
+    }
+    .welcome em{
+      color:var(--ink);
+      border-left:4px solid var(--accent);
+      padding-left:10px;
+      display:block;
+      margin-top:8px;
+      font-style:italic;
+    }
+
+    /* Footer */
+    footer{
+      border-top:1px solid var(--line);
+      color:var(--muted);
+      text-align:center;
+      font-size:.95rem;
+    }
+
+    /* small screens */
+    @media (max-width:640px){
+      header, footer, main{ padding:16px; }
+      header h1{ font-size:1.6rem; }
+    }
+  </style>
 </head>
+
 <body>
-  <h1>CST336 - Lab 1</h1>
-  <figure>
-  <img src="img/alexis_wogoman.png" alt="Portrait of Alexis Wogoman" width="250">
-  <figcaption>Welcome to my Lab 1 Assignment Page</figcaption>
-  </figure>
-  <p>Lab 1 folder in CST336 folder.</p>
+  <header>
+    <h1>Alexis Wogoman — Portfolio</h1>
+    <hr>
+    <nav aria-label="Navigation">
+      <a href="index.html" aria-current="page">Home</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <figure>
+      <img src="img/alexis_wogoman.png" alt="Portrait of Alexis Wogoman">
+      <figcaption>Hi! I’m Alexis.</figcaption>
+    </figure>
+
+    <div class="welcome">
+      <p>I’m a CSOnline student at CSUMB. Please feel free to contact me!</p>
+      <em>"Always code as if the guy who ends up maintaining your code will be a violent psychopath who knows where you live. - John F. Woods"</em>
+    </div>
+  </main>
+
+  <footer>
+    &copy; 2025 Wogoman. CST336 Internet Programming <br>
+    <small>Disclaimer: The information in this webpage is (mostly) ficticious.</small>
+  </footer>
 </body>
 </html>
