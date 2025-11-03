@@ -7,9 +7,10 @@
 
   <style>
     /* Note to grader: I have taken an HTML/PHP based web programming class prior to this one,
-    please let me know if I should simplify anything for this assignment. */
+    and have made a few websites before. Please let me know if I should simplify anything for
+    this assignment. */
     
-    /* Setting up color / theme */
+    /* Setting up color / theme using colorpicker.com*/
     :root{
       --bg:#0a0a0c;
       --panel:#121218;
@@ -22,6 +23,7 @@
     *{ box-sizing:border-box; }
     body{
       margin:0;
+      /* Setting up font */
       font-family: Georgia, "Times New Roman", serif;
       color:var(--ink);
       background:var(--bg);
@@ -32,7 +34,7 @@
     header, footer, main{ padding:20px; }
     hr{ border:none; border-top:1px solid var(--line); margin:10px 0 16px; }
 
-    /* Header + Navigation */
+    /* Header + Navigation Buttons */
     header h1{
       margin:0 0 6px 0;
       font-size:1.9rem;
@@ -92,7 +94,7 @@
       font-size:.95rem;
     }
 
-    /* small screens */
+    /* Small boxes */
     @media (max-width:640px){
       header, footer, main{ padding:16px; }
       header h1{ font-size:1.6rem; }
@@ -104,7 +106,7 @@
   <header>
     <h1>Alexis Wogoman — Portfolio</h1>
     <hr>
-    <nav aria-label="Navigation">
+    <nav aria-label="Primary Navigation">
       <a href="index.html" aria-current="page">Home</a>
       <a href="about.html">About</a>
       <a href="contact.html">Contact</a>
