@@ -1,4 +1,6 @@
-/* Theme setup - colorpicker.com*/
+/* CSS Styles for Hw1 */
+
+/* Colors from colorpicker.com */
 :root {
   --bg: #0a0a0c;
   --panel: #121218;
@@ -8,37 +10,27 @@
   --line: #1d1b22;
 }
 
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
 
 body {
   margin: 0;
-  /* Font setup */
   font-family: Georgia, "Times New Roman", serif;
   color: var(--ink);
   background: var(--bg);
   line-height: 1.6;
 }
 
-/* Layout */
-header,
-footer,
-main {
-  padding: 20px;
-}
+/* Header & Nav */
+header, footer, main { padding: 20px; }
+hr { border: none; border-top: 1px solid var(--line); margin: 10px 0 16px; }
 
-hr {
-  border: none;
-  border-top: 1px solid var(--line);
-  margin: 10px 0 16px;
-}
-
-/* Header & Navigation*/
 header h1 {
   margin: 0 0 6px 0;
   font-size: 1.9rem;
   letter-spacing: 0.5px;
+  text-shadow: 0 1px 0 #000;
 }
 
 nav {
@@ -54,61 +46,74 @@ nav a {
   border: 1px solid var(--line);
   border-radius: 8px;
   background: var(--panel);
+  transition: transform .15s ease, box-shadow .15s ease;
 }
 
 nav a:hover {
   outline: 2px solid var(--accent);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0,0,0,.25);
 }
 
-/* Main section*/
-main {
-  display: flex;
-  gap: 24px;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-}
+nav a.active { outline: 2px solid var(--accent); }
 
-figure {
-  margin: 0;
-  background: var(--panel);
-  border: 1px solid var(--line);
-  border-radius: 12px;
-  padding: 12px;
-  max-width: 280px;
-}
-
-figure img {
-  display: block;
-  width: 100%;
-  height: auto;
-  border-radius: 8px;
-}
-
-figcaption {
-  color: var(--muted);
-  margin-top: 6px;
-  text-align: center;
-}
-
-.welcome {
-  max-width: 560px;
+/* Panels & Cards */
+.panel {
+  width: min(980px, 94%);
+  margin: 14px auto;
   background: var(--panel);
   border: 1px solid var(--line);
   border-radius: 12px;
   padding: 16px 18px;
 }
 
-.welcome em {
-  color: var(--ink);
-  border-left: 4px solid var(--accent);
-  padding-left: 10px;
-  display: block;
-  margin-top: 8px;
-  font-style: italic;
+.card {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 14px;
 }
 
-/* Footer */
+/* Grid layout for small card galleries & lists */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+/* Media & images */
+figure { margin: 0; }
+figure img, picture, picture img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.media {
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+}
+
+/* Details & Summary */
+details {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #0f0f15;
+  padding: 10px 12px;
+}
+
+summary {
+  cursor: pointer;
+  font-weight: 700;
+  color: #e3d8c3;
+}
+
+summary::marker { color: var(--accent); }
+
+/* Footer & Logo */
 footer {
   border-top: 1px solid var(--line);
   color: var(--muted);
@@ -116,102 +121,6 @@ footer {
   font-size: 0.95rem;
 }
 
-/* Small screens */
-@media (max-width: 640px) {
-  header,
-  footer,
-  main {
-    padding: 16px;
-  }
-
-  header h1 {
-    font-size: 1.6rem;
-  }
-}
-
-/* About Page Style */
-
-/* Panels */
-.panel {
-  width: min(900px, 94%);
-  margin: 14px auto;
-  background: var(--panel);
-  border: 1px solid var(--line);
-  border-radius: 12px;
-  padding: 16px 18px;
-  text-align: left;
-}
-
-/* Headings in table */
-.panel h2 {
-  margin: 0 0 10px 0;
-}
-
-/* Table theme */
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 12px 0;
-  background-color: var(--panel);
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.35);
-}
-
-th,
-td {
-  /* Borders */
-  border: 1px solid #1d1b22;
-  padding: 10px 14px;
-  text-align: left;
-}
-
-thead th {
-  /* Header */
-  background-color: #220f15;
-  color: #e3d8c3;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-tbody tr {
-  background-color: #121218;
-  color: #e8e5de;
-}
-
-tbody tr:nth-child(even) {
-  /* Striping */
-  background-color: #0f0f15;
-}
-
-tbody tr:hover {
-  /* Hover highlighting */
-  background-color: #1a1a22;
-}
-
-/* Hobbies list */
-.hobbies {
-  list-style: disc inside;
-  margin: 6px 0 0 0;
-  padding-left: 0;
-}
-
-.hobbies li {
-  padding: 6px 4px;
-  border-bottom: 1px solid var(--line);
-}
-
-.hobbies li:last-child {
-  border-bottom: 0;
-}
-
-/* Highlight for "noun" labels */
-.noun {
-  font-weight: 700;
-  color: #e3d8c3;
-}
-
-
-/* CSUMB logo */
 .footer-logo {
   width: 60px;
   opacity: 0.8;
@@ -219,9 +128,14 @@ tbody tr:hover {
 }
 
 footer small {
-  /* Smaller font & different color */
   display: block;
   color: #a39e95;
   font-size: 0.85rem;
   letter-spacing: 0.3px;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  header, footer, main { padding: 16px; }
+  header h1 { font-size: 1.6rem; }
 }
