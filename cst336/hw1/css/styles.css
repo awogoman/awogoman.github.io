@@ -2,18 +2,18 @@
 
 /* Baseball themed colors from colorpicker.com */
 :root {
-  --bg:    #faf7f2;  /* ball off-white */
-  --ink:   #0b2a4a;  /* navy  */
+  --bg:    #faf7f2;  /* off-white */
+  --ink:   #0b2a4a;  /* navy */
   --muted: #5b6b7c;
-  --accent:#7a0f1d;  /* crimson red */
+  --accent:#7a0f1d;  /* crimson */
   --field: #2e7d32;  /* grass green */
   --panel: #f3e6d4;  /* dirt-tan */
   --line:  #d9c8b2;
 }
 
+/* Base */
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
-
 body {
   margin: 0;
   font-family: Georgia, "Times New Roman", serif;
@@ -39,7 +39,8 @@ hr {
 header h1 {
   margin: 0 0 6px 0;
   font-size: 1.9rem;
-  letter-spacing: 0.5px;
+  letter-spacing: .5px;
+  text-shadow: 0 1px 0 #00000010;
 }
 
 nav {
@@ -47,8 +48,8 @@ nav {
   gap: 14px;
   flex-wrap: wrap;
 }
-
 nav a {
+  position: relative; /* underline animation */
   color: var(--ink);
   text-decoration: none;
   padding: 6px 12px;
@@ -63,6 +64,17 @@ nav a:hover {
   box-shadow: 0 4px 10px rgba(0,0,0,.06);
   border-color: var(--field);
 }
+nav a::after {
+  content: "";
+  position: absolute;
+  left: 12px; right: 12px; bottom: 6px;
+  height: 2px;
+  background: var(--field);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .18s ease;
+}
+nav a:hover::after { transform: scaleX(1); }
 nav a.active {
   border-color: var(--accent);
   outline: 2px solid color-mix(in srgb, var(--accent) 25%, transparent);
@@ -75,18 +87,76 @@ nav a.active {
   border-radius: 12px;
   padding: 16px 18px;
   box-shadow: 0 1px 0 rgba(0,0,0,.04);
+  position: relative;
 }
 .panel { width: min(980px, 94%); margin: 14px auto; }
 .card  { padding: 14px; }
 
-/* Grid */
+/* Laces corner ticks */
+.panel::before, .panel::after, .card::before, .card::after {
+  content: "";
+  position: absolute;
+  width: 14px; height: 2px;
+  background: var(--accent);
+  opacity: .28;
+}
+.panel::before { top: 10px; left: 10px; transform: rotate(45deg); }
+.panel::after  { bottom: 10px; right: 10px; transform: rotate(45deg); }
+.card::before  { top: 8px; left: 8px; transform: rotate(45deg); }
+.card::after   { bottom: 8px; right: 8px; transform: rotate(45deg); }
+
+/* Hero field stripes */
+.hero--field {
+  background:
+    repeating-linear-gradient(
+      90deg,
+      #eaf4e6 0 22px,      /* light stripe */
+      #dff0db 22px 44px    /* dark stripe */
+    );
+  border-color: #b7d5b2;
+  box-shadow: inset 0 0 0 2px rgba(46,125,50,.15);
+}
+.hero--field h2,
+.hero--field p { color: #0b2a4a; }
+
+/* Bases */
+.panel h2 {
+  position: relative;
+  padding-left: 34px;
+  margin: 0 0 10px 0;
+}
+.panel h2::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 2px;
+  width: 18px; height: 18px;
+  border: 2px solid var(--field);
+  transform: rotate(45deg);
+  border-radius: 3px; /* rounding */
+  background: #fff;
+  box-shadow: 0 0 0 2px #fff inset;
+}
+
+/* Baseball bullets */
+.panel ul { list-style: none; padding-left: 0; }
+.panel ul li { padding-left: 1.6rem; position: relative; }
+.panel ul li::marker { content: none; }
+.panel ul li::before {
+  content: "⚾";
+  position: absolute;
+  left: 0; top: 0.05rem;
+  font-size: 1.05rem;
+  opacity: .9;
+}
+
+/* Grid gallery */
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 16px;
 }
 
-/* Media & images */
+/* Media & Images */
 figure { margin: 0; }
 figure img,
 picture img,
@@ -119,7 +189,28 @@ summary {
 }
 summary::marker { color: var(--accent); }
 
-/* Footer & Logo */
+/* Scorecard table */
+.table-scorecard {
+  border: 2px solid #cdbba4;
+  background: #fff;
+  width: 100%;
+  border-collapse: collapse;
+  font-variant-numeric: tabular-nums;
+}
+.table-scorecard th,
+.table-scorecard td {
+  border: 1px solid #d9c8b2;
+  padding: 10px 12px;
+  color: #0b2a4a;
+}
+.table-scorecard thead th {
+  background: #f8efe4;
+  text-transform: uppercase;
+  letter-spacing: .4px;
+}
+.table-scorecard tbody tr:nth-child(even) { background: #fbf7f2; }
+
+/* Footer */
 footer {
   border-top: 1px solid var(--line);
   color: var(--muted);
@@ -143,19 +234,3 @@ footer small {
   header, footer, main { padding: 16px; }
   header h1 { font-size: 1.6rem; }
 }
-
-/* Baseball theme furthering */
-.hero--field {
-  background:
-    repeating-linear-gradient(
-      90deg,
-      #eaf4e6 0 22px,   /* light stripe */
-      #dff0db 22px 44px /* dark stripe */
-    );
-  border-color: #b7d5b2; /* light grass line */
-  box-shadow: inset 0 0 0 2px rgba(46,125,50,.15);
-}
-
-/* Make text readable on the hero */
-.hero--field h2,
-.hero--field p { color: #0b2a4a; }
