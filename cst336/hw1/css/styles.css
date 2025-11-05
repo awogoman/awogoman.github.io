@@ -139,3 +139,14 @@ footer small {
   header, footer, main { padding: 16px; }
   header h1 { font-size: 1.6rem; }
 }
+
+/* Image polishing for sizing */
+.media {
+  object-fit: cover;
+  aspect-ratio: 16 / 9;
+}
+figcaption {
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
