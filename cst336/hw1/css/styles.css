@@ -143,3 +143,19 @@ footer small {
   header, footer, main { padding: 16px; }
   header h1 { font-size: 1.6rem; }
 }
+
+/* Baseball theme furthering */
+.hero--field {
+  background:
+    repeating-linear-gradient(
+      90deg,
+      #eaf4e6 0 22px,   /* light stripe */
+      #dff0db 22px 44px /* dark stripe */
+    );
+  border-color: #b7d5b2; /* light grass line */
+  box-shadow: inset 0 0 0 2px rgba(46,125,50,.15);
+}
+
+/* Make text readable on the hero */
+.hero--field h2,
+.hero--field p { color: #0b2a4a; }
