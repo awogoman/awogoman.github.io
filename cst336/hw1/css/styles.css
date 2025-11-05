@@ -83,18 +83,16 @@ nav a.active { outline: 2px solid var(--accent); }
 
 /* Media & images */
 figure { margin: 0; }
-figure img, picture, picture img {
+figure img,
+picture img,
+.media {
   display: block;
   width: 100%;
   height: auto;
-  border-radius: 10px;
-}
-
-.media {
-  aspect-ratio: 16 / 9;
-  object-fit: cover;
+  object-fit: contain;
   border: 1px solid var(--line);
   border-radius: 10px;
+  background: #0f0f15;
 }
 
 /* Details & Summary */
