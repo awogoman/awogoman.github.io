@@ -1,1 +1,227 @@
+/* Theme setup - colorpicker.com*/
+:root {
+  --bg: #0a0a0c;
+  --panel: #121218;
+  --ink: #e8e5de;
+  --muted: #a39e95;
+  --accent: #7a0f1d;
+  --line: #1d1b22;
+}
 
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  /* Font setup */
+  font-family: Georgia, "Times New Roman", serif;
+  color: var(--ink);
+  background: var(--bg);
+  line-height: 1.6;
+}
+
+/* Layout */
+header,
+footer,
+main {
+  padding: 20px;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid var(--line);
+  margin: 10px 0 16px;
+}
+
+/* Header & Navigation*/
+header h1 {
+  margin: 0 0 6px 0;
+  font-size: 1.9rem;
+  letter-spacing: 0.5px;
+}
+
+nav {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+nav a {
+  color: var(--ink);
+  text-decoration: none;
+  padding: 6px 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+}
+
+nav a:hover {
+  outline: 2px solid var(--accent);
+}
+
+/* Main section*/
+main {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+figure {
+  margin: 0;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 12px;
+  max-width: 280px;
+}
+
+figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+figcaption {
+  color: var(--muted);
+  margin-top: 6px;
+  text-align: center;
+}
+
+.welcome {
+  max-width: 560px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 16px 18px;
+}
+
+.welcome em {
+  color: var(--ink);
+  border-left: 4px solid var(--accent);
+  padding-left: 10px;
+  display: block;
+  margin-top: 8px;
+  font-style: italic;
+}
+
+/* Footer */
+footer {
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  text-align: center;
+  font-size: 0.95rem;
+}
+
+/* Small screens */
+@media (max-width: 640px) {
+  header,
+  footer,
+  main {
+    padding: 16px;
+  }
+
+  header h1 {
+    font-size: 1.6rem;
+  }
+}
+
+/* About Page Style */
+
+/* Panels */
+.panel {
+  width: min(900px, 94%);
+  margin: 14px auto;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 16px 18px;
+  text-align: left;
+}
+
+/* Headings in table */
+.panel h2 {
+  margin: 0 0 10px 0;
+}
+
+/* Table theme */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 12px 0;
+  background-color: var(--panel);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.35);
+}
+
+th,
+td {
+  /* Borders */
+  border: 1px solid #1d1b22;
+  padding: 10px 14px;
+  text-align: left;
+}
+
+thead th {
+  /* Header */
+  background-color: #220f15;
+  color: #e3d8c3;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+tbody tr {
+  background-color: #121218;
+  color: #e8e5de;
+}
+
+tbody tr:nth-child(even) {
+  /* Striping */
+  background-color: #0f0f15;
+}
+
+tbody tr:hover {
+  /* Hover highlighting */
+  background-color: #1a1a22;
+}
+
+/* Hobbies list */
+.hobbies {
+  list-style: disc inside;
+  margin: 6px 0 0 0;
+  padding-left: 0;
+}
+
+.hobbies li {
+  padding: 6px 4px;
+  border-bottom: 1px solid var(--line);
+}
+
+.hobbies li:last-child {
+  border-bottom: 0;
+}
+
+/* Highlight for "noun" labels */
+.noun {
+  font-weight: 700;
+  color: #e3d8c3;
+}
+
+
+/* CSUMB logo */
+.footer-logo {
+  width: 60px;
+  opacity: 0.8;
+  margin-bottom: 6px;
+}
+
+footer small {
+  /* Smaller font & different color */
+  display: block;
+  color: #a39e95;
+  font-size: 0.85rem;
+  letter-spacing: 0.3px;
+}
