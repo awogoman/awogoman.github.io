@@ -1,17 +1,17 @@
 /* CSS Styles for Hw1 */
 
-/* Colors from colorpicker.com */
+/* Baseball themed colors from colorpicker.com */
 :root {
-  --bg: #0a0a0c;
-  --panel: #121218;
-  --ink: #e8e5de;
-  --muted: #a39e95;
-  --accent: #7a0f1d;
-  --line: #1d1b22;
+  --bg:    #faf7f2;  /* ball off-white */
+  --ink:   #0b2a4a;  /* navy  */
+  --muted: #5b6b7c;
+  --accent:#7a0f1d;  /* crimson red */
+  --field: #2e7d32;  /* grass green */
+  --panel: #f3e6d4;  /* dirt-tan */
+  --line:  #d9c8b2;
 }
 
 * { box-sizing: border-box; }
-
 html { scroll-behavior: smooth; }
 
 body {
@@ -24,13 +24,22 @@ body {
 
 /* Header & Nav */
 header, footer, main { padding: 20px; }
-hr { border: none; border-top: 1px solid var(--line); margin: 10px 0 16px; }
+hr {
+  border: 0;
+  height: 10px;
+  background:
+    radial-gradient(circle at 6px 50%, var(--accent) 4px, transparent 5px) repeat-x,
+    radial-gradient(circle at 6px 50%, var(--accent) 4px, transparent 5px) repeat-x;
+  background-size: 18px 10px, 18px 10px;
+  background-position: 0 0, 9px 100%;
+  opacity: .7;
+  margin: 10px 0 16px;
+}
 
 header h1 {
   margin: 0 0 6px 0;
   font-size: 1.9rem;
   letter-spacing: 0.5px;
-  text-shadow: 0 1px 0 #000;
 }
 
 nav {
@@ -42,39 +51,35 @@ nav {
 nav a {
   color: var(--ink);
   text-decoration: none;
-  padding: 6px 10px;
+  padding: 6px 12px;
   border: 1px solid var(--line);
-  border-radius: 8px;
-  background: var(--panel);
-  transition: transform .15s ease, box-shadow .15s ease;
+  border-radius: 999px;
+  background: #fff;
+  box-shadow: 0 1px 0 rgba(0,0,0,.05);
+  transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease;
 }
-
 nav a:hover {
-  outline: 2px solid var(--accent);
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(0,0,0,.25);
+  box-shadow: 0 4px 10px rgba(0,0,0,.06);
+  border-color: var(--field);
 }
-
-nav a.active { outline: 2px solid var(--accent); }
+nav a.active {
+  border-color: var(--accent);
+  outline: 2px solid color-mix(in srgb, var(--accent) 25%, transparent);
+}
 
 /* Panels & Cards */
-.panel {
-  width: min(980px, 94%);
-  margin: 14px auto;
+.panel, .card {
   background: var(--panel);
   border: 1px solid var(--line);
   border-radius: 12px;
   padding: 16px 18px;
+  box-shadow: 0 1px 0 rgba(0,0,0,.04);
 }
+.panel { width: min(980px, 94%); margin: 14px auto; }
+.card  { padding: 14px; }
 
-.card {
-  background: var(--panel);
-  border: 1px solid var(--line);
-  border-radius: 12px;
-  padding: 14px;
-}
-
-/* Grid layout for small card galleries & lists */
+/* Grid */
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -92,23 +97,26 @@ picture img,
   object-fit: contain;
   border: 1px solid var(--line);
   border-radius: 10px;
-  background: #0f0f15;
+  background: #fff;
+}
+figcaption {
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: .95rem;
 }
 
 /* Details & Summary */
 details {
   border: 1px solid var(--line);
   border-radius: 10px;
-  background: #0f0f15;
+  background: #fff;
   padding: 10px 12px;
 }
-
 summary {
   cursor: pointer;
   font-weight: 700;
-  color: #e3d8c3;
+  color: var(--ink);
 }
-
 summary::marker { color: var(--accent); }
 
 /* Footer & Logo */
@@ -116,30 +124,22 @@ footer {
   border-top: 1px solid var(--line);
   color: var(--muted);
   text-align: center;
-  font-size: 0.95rem;
+  font-size: .95rem;
 }
-
 .footer-logo {
   width: 60px;
-  opacity: 0.8;
+  opacity: .85;
   margin-bottom: 6px;
 }
-
 footer small {
   display: block;
-  color: #a39e95;
-  font-size: 0.85rem;
-  letter-spacing: 0.3px;
+  color: var(--muted);
+  font-size: .85rem;
+  letter-spacing: .3px;
 }
 
 /* Responsive */
 @media (max-width: 640px) {
   header, footer, main { padding: 16px; }
   header h1 { font-size: 1.6rem; }
-}
-
-figcaption {
-  margin-top: 8px;
-  color: var(--muted);
-  font-size: 0.95rem;
 }
