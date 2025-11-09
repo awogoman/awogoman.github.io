@@ -1,1 +1,172 @@
+/* Retro arcade theme */
 
+/* Custom pixel font import */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+/* Colors from colorpicker.com */
+:root {
+  --bg: #050505;
+  --panel: #111;
+  --screen: #0a0a0a;
+  --text: #00ffcc;
+  --accent: #ff0099;
+  --accent2: #00ff99;
+  --warn: #ff4444;
+  --glow: 0 0 10px var(--accent), 0 0 20px var(--accent);
+}
+
+/* Box-sizing reset for spacing */
+* { box-sizing: border-box; }
+
+/* Base page style */
+html, body {
+  height: 100%;
+  margin: 0;
+  background: radial-gradient(circle at top, #1a0033, #000);
+  color: var(--text);
+  font-family: 'Press Start 2P', monospace;
+  font-size: 14px;
+  text-align: center;
+  overflow-x: hidden;
+}
+
+/* Header */
+header {
+  padding: 2rem 1rem 1rem;
+  text-shadow: var(--glow);
+}
+
+h1 {
+  margin: 0;
+  font-size: 1.8rem;
+  color: var(--accent);
+}
+
+h2 {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: var(--text);
+}
+
+/* Card container */
+.card {
+  max-width: 800px;
+  margin: 2rem auto;
+  background: linear-gradient(180deg, #0a0a0a, #1a1a1a);
+  border: 3px solid var(--accent);
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 0 30px var(--accent);
+  animation: flicker 3s infinite alternate;
+}
+
+/* Flicker animation, source: https://dev.to/ekeijl/retro-crt-terminal-screen-in-css-js-4afh */
+@keyframes flicker {
+  0%, 18%, 22%, 25%, 53%, 57%, 100% { opacity: 1; }
+  20%, 24%, 55% { opacity: 0.7; }
+}
+
+/* Form elements */
+.prompt {
+  display: block;
+  margin-bottom: 1rem;
+  color: var(--accent2);
+}
+
+input[type="text"] {
+  width: 6rem;
+  padding: 0.75rem;
+  border: 2px solid var(--accent);
+  border-radius: 6px;
+  background: black;
+  color: var(--text);
+  font-family: 'Press Start 2P', monospace;
+  font-size: 1rem;
+  text-align: center;
+  box-shadow: inset 0 0 10px var(--accent);
+}
+
+/* Highlight border */
+input[type="text"]:focus {
+  outline: none;
+  box-shadow: 0 0 15px var(--accent2);
+}
+
+/* Buttons */
+button {
+  margin: 1rem 0.5rem;
+  padding: 0.75rem 1.2rem;
+  border: 2px solid var(--accent);
+  border-radius: 6px;
+  background: black;
+  color: var(--accent);
+  font-family: 'Press Start 2P', monospace;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-shadow: var(--glow);
+}
+
+/* Hover effect: glow and scale up */
+button:hover {
+  color: var(--accent2);
+  border-color: var(--accent2);
+  box-shadow: 0 0 20px var(--accent2);
+  transform: scale(1.05);
+}
+
+/* Reset button alt color */
+button.secondary {
+  border-color: var(--accent2);
+  color: var(--accent2);
+}
+
+/* Messages and error text */
+.error {
+  color: var(--warn);
+  min-height: 1.2rem;
+  margin-top: 0.5rem;
+  text-shadow: 0 0 10px var(--warn);
+}
+
+.message {
+  color: var(--accent2);
+  margin: 1rem 0;
+  text-shadow: 0 0 15px var(--accent2);
+  min-height: 1.2rem;
+}
+
+/* Stats and guess panels */
+.row {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+}
+
+.panel {
+  background: var(--screen);
+  border: 2px solid var(--accent);
+  border-radius: 8px;
+  width: 45%;
+  min-width: 250px;
+  padding: 1rem;
+  box-shadow: 0 0 15px var(--accent);
+}
+
+.panel h3 {
+  color: var(--accent);
+  font-size: 0.8rem;
+  margin-bottom: 0.75rem;
+}
+
+/* Text inside guesses and stats area */
+.guesses, .stats {
+  font-size: 0.8rem;
+  color: var(--text);
+  line-height: 1.6;
+  font-variant-numeric: tabular-nums;
+}
+
+/* State classes */
+.hidden { display: none !important; }
+.disabled { opacity: 0.4; pointer-events: none; }
