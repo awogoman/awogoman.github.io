@@ -279,9 +279,9 @@ html {
     color: var(--accent);
     /* Less glow effect */
     text-shadow:
-      0 0 2px var(--accent),
-      0 0 4px var(--accent),
-      0 0 6px rgba(255, 0, 153, 0.6);
+      0 0 1px var(--accent),
+      0 0 3px var(--accent),
+      0 0 4px rgba(255, 0, 153, 0.6);
     line-height: 1.2;
     letter-spacing: 0.5px;
     margin-bottom: 0.4rem;
