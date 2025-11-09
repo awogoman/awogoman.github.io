@@ -167,6 +167,27 @@ button.secondary {
   font-variant-numeric: tabular-nums;
 }
 
+/* ---------------------------------------------------------
+   INSERT COIN ANIMATION (retro blinking text)
+   --------------------------------------------------------- */
+.insert-coin {
+  margin-top: 1.5rem;
+  color: var(--accent2);
+  font-size: 0.8rem;
+  text-shadow: 0 0 10px var(--accent2), 0 0 20px var(--accent2);
+  animation: blinkCoin 1.2s steps(2, start) infinite;
+}
+
+/* Insert Coin animation */
+@keyframes blinkCoin {
+  0%, 50% {
+    opacity: 1;
+  }
+  51%, 100% {
+    opacity: 0;
+  }
+}
+
 /* State classes */
 .hidden { display: none !important; }
 .disabled { opacity: 0.4; pointer-events: none; }
