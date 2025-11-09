@@ -198,4 +198,17 @@
   setMessage("Guess a number between 1 and 99.");
   resetBtn.hidden = true;
   input.focus();
+
+  /* Insert Coin sound */
+  window.addEventListener("load", () => {
+    // timeout for browser, enable audio context
+    setTimeout(() => {
+      if (audioCtx.state === "running") {
+        playBeep({ freq: 440, duration: 0.1, volume: 0.3 });
+        playBeep({ freq: 660, duration: 0.12, volume: 0.25, when: 0.1 });
+        playBeep({ freq: 880, duration: 0.15, volume: 0.2, when: 0.25 });
+      }
+    }, 700);
+  });
+
 })();
