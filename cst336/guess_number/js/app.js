@@ -23,36 +23,46 @@
   /* 8bit sound effects:
   source: https://github.com/learosema/retro-sound */
   const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  
+  /* Short 8bit sound */
   function playBeep({ freq = 440, duration = 0.12, type = "square", volume = 0.2, when = 0 }) {
     const t0 = audioCtx.currentTime + when;
     const osc = audioCtx.createOscillator();
     const gain = audioCtx.createGain();
+
     osc.type = type;
     osc.frequency.setValueAtTime(freq, t0);
-    // Volume fade-in/out
+
+    // Clickless envelope
     gain.gain.setValueAtTime(0.0001, t0);
     gain.gain.exponentialRampToValueAtTime(Math.max(0.001, volume), t0 + 0.01);
     gain.gain.exponentialRampToValueAtTime(0.0001, t0 + duration);
+
     osc.connect(gain).connect(audioCtx.destination);
     osc.start(t0);
     osc.stop(t0 + duration + 0.01);
   }
+  
+  /* Slide sound for loss */
   function playSlide({ start = 600, end = 200, duration = 0.4, type = "square", volume = 0.2, when = 0 }) {
     const t0 = audioCtx.currentTime + when;
     const osc = audioCtx.createOscillator();
     const gain = audioCtx.createGain();
+
     osc.type = type;
     osc.frequency.setValueAtTime(start, t0);
     osc.frequency.exponentialRampToValueAtTime(Math.max(1, end), t0 + duration);
+
     gain.gain.setValueAtTime(0.0001, t0);
     gain.gain.exponentialRampToValueAtTime(Math.max(0.001, volume), t0 + 0.02);
     gain.gain.exponentialRampToValueAtTime(0.0001, t0 + duration);
+
     osc.connect(gain).connect(audioCtx.destination);
     osc.start(t0);
     osc.stop(t0 + duration + 0.05);
   }
 
-  /* Sound for correct guess */
+  /* Win audio */
   function playWinChime() {
     const base = 523.25; // C5
     const notes = [base, base * 1.25, base * 1.5, base * 2];
@@ -61,36 +71,55 @@
     );
   }
 
-  /* Sound for loss */
+  /* Lose audio */
   function playLoseBuzz() {
     playSlide({ start: 500, end: 110, duration: 0.45, type: "square", volume: 0.25, when: 0 });
     playBeep({ freq: 90, duration: 0.18, type: "square", volume: 0.3, when: 0.46 });
   }
 
-  /* Resumes the audio context when a button is pressed
-  */
+  /* Resume suspended audio (reset) */
   function ensureAudio() {
     if (audioCtx.state === "suspended") audioCtx.resume();
   }
 
+ /* Insert Coin animation */
+
+  /* Make visible and blink */
+  function showInsertCoin() {
+    if (!insertCoinEl) return;
+    insertCoinEl.classList.remove("fade-out", "restarting");
+    insertCoinEl.style.opacity = "1";
+    insertCoinEl.style.visibility = "visible";
+    void insertCoinEl.offsetWidth; // restart blink animation
+    coinInserted = false;
+  }
+
+  /* Fade on game start*/
+  function fadeInsertCoinOnce() {
+    if (!insertCoinEl || coinInserted) return;
+    insertCoinEl.classList.add("fade-out");
+    coinInserted = true;
+  }
+
   /* Helper functions */
-  /* Returns a random int 1-99 inclusive */
+  
+  // Returns random int 1-99
   function rand1to99() {
     return Math.floor(Math.random() * 99) + 1;
   }
 
-  /* Sets / clears error text */
+  // Sets / clears the error text
   function setError(msg = "") {
     errorEl.textContent = msg;
   }
 
-  /* Sets main game message */
+  // Sets the main game message
   function setMessage(msg = "", accent = true) {
     messageEl.textContent = msg;
     messageEl.style.color = accent ? "var(--accent2)" : "var(--text)";
   }
 
-  /* Add each guess to list of previous guesses */
+  // Add guess to the list
   function appendGuess(n) {
     if (guessesEl.textContent.trim() === "—") {
       guessesEl.textContent = `${n}`;
@@ -99,43 +128,43 @@
     }
   }
 
-  /* Disables guessing controls after game ends */
+  // Disable guessing after game end, show INSERT COIN
   function disableGuessing() {
     finished = true;
     guessBtn.classList.add("disabled");
     input.setAttribute("disabled", "true");
-    resetBtn.hidden = false; // show Reset
+    resetBtn.hidden = false; // show Reset when game ends
     input.blur();
+
+    // Insert coin reappears at end of game
+    showInsertCoin();
   }
 
-  /* Enables controls for a new game */
+  // Enable controls for a new round
   function enableGuessing() {
     finished = false;
     guessBtn.classList.remove("disabled");
     input.removeAttribute("disabled");
-    resetBtn.hidden = true;
+    resetBtn.hidden = true; // hide Reset until game end
     input.focus();
   }
 
-  /* Resets for a new round */
+  // Clear UI for new game
   function resetGame() {
-  attempts = 0;
-  attemptsEl.textContent = attempts;
-  setError("");
-  setMessage("New round started! Guess a number between 1 and 99.");
-  guessesEl.textContent = "—";
-  target = rand1to99();
-  enableGuessing();
-  input.value = "";
+    attempts = 0;
+    attemptsEl.textContent = attempts;
+    setError("");
+    setMessage("New round started! Guess a number between 1 and 99.");
+    guessesEl.textContent = "—";
+    target = rand1to99();
+    enableGuessing();
+    input.value = "";
 
-  /* Insert coin reappear */
-  if (insertCoinEl) {
-    insertCoinEl.classList.remove("fade-out"); // remove fade
-    coinInserted = false;                      // set flag
+    // Show insert coin animation
+    showInsertCoin();
   }
-}
-  
-  /*  Checks player input and returns either a number or an error message. */
+
+  /* Check that user provided a valid input number */
   function validate(raw) {
     const v = raw.trim();
     if (v === "") return { ok: false, msg: "Please enter a number." };
@@ -157,14 +186,17 @@
       return;
     }
 
+    // Fade insert coin on game start
+    fadeInsertCoinOnce();
+
     const guess = check.value;
 
-    /* Increment attempts and show them in a list */
+    // Count guesses
     attempts += 1;
     attemptsEl.textContent = attempts;
     appendGuess(guess);
 
-    /* Player wins */
+    /* Win */
     if (guess === target) {
       setMessage(`Correct! You got it in ${attempts} ${attempts === 1 ? "try" : "tries"}.`);
       wins += 1;
@@ -174,7 +206,7 @@
       return;
     }
 
-    /* Player loses */
+    /* Loss */
     if (attempts >= 7) {
       setMessage(`You lost. The number was ${target}.`, false);
       losses += 1;
@@ -184,53 +216,29 @@
       return;
     }
 
-    /* Game ongoing */
+    /* Game in progress*/
     setMessage(guess < target ? "Too low — try a higher number." : "Too high — try a lower number.");
     input.select();
   }
 
   /* Event listeners */
+  // Resume audio
   guessBtn.addEventListener("click", ensureAudio);
-  resetBtn.addEventListener("click", ensureAudio);
   input.addEventListener("keydown", ensureAudio);
-
-  /* Coin animation fades */
-  function fadeInsertCoin() {
-    if (!coinInserted && insertCoinEl) {
-      insertCoinEl.classList.add("fade-out");
-      coinInserted = true;
-    }
-  }
-  
-  guessBtn.addEventListener("click", fadeInsertCoin);
-  resetBtn.addEventListener("click", fadeInsertCoin);
-  input.addEventListener("keydown", fadeInsertCoin);
-  window.addEventListener("click", fadeInsertCoin); // any click counts as coin insert
-
-
+  resetBtn.addEventListener("click", ensureAudio);
+  // Game actions
   guessBtn.addEventListener("click", handleGuess);
   resetBtn.addEventListener("click", resetGame);
-
-  // Pressing 'Enter' triggers a guess
+  // Press Enter for a guess
   input.addEventListener("keydown", (e) => {
-    if (e.key === "Enter") handleGuess();
+    if (e.key === "Enter") {
+      handleGuess();
+    }
   });
 
   /* Page state */
   setMessage("Guess a number between 1 and 99.");
   resetBtn.hidden = true;
   input.focus();
-
-  /* Insert Coin sound */
-  window.addEventListener("load", () => {
-    // timeout for browser, enable audio context
-    setTimeout(() => {
-      if (audioCtx.state === "running") {
-        playBeep({ freq: 440, duration: 0.1, volume: 0.3 });
-        playBeep({ freq: 660, duration: 0.12, volume: 0.25, when: 0.1 });
-        playBeep({ freq: 880, duration: 0.15, volume: 0.2, when: 0.25 });
-      }
-    }, 700);
-  });
-
+  showInsertCoin();
 })();
