@@ -273,30 +273,33 @@ html {
 }
 
 /* Mobile screens */
-@media (max-width: 900px) {
-  h1 {
-    font-size: clamp(1.6rem, 8vw, 2rem);
-    color: #ff4fb3;           /* tweak color for readability */
-    text-shadow: none;        /* remove neon glow */
-    letter-spacing: 0.8px;    /* pixel font clarity */
+@media (max-width: 1000px) {
+  body h1 {
+    font-size: clamp(1.6rem, 7vw, 2rem);
+    color: #ff5fb8 !important;
+    /* Very little glow for readability */
+    text-shadow:
+      0 0 2px rgba(255, 0, 153, 0.6),
+      0 0 4px rgba(255, 0, 153, 0.4);
+    -webkit-text-stroke: 0.4px #ff99dd;
+    text-stroke: 0.4px #ff99dd;
+    letter-spacing: 0.7px;
     line-height: 1.25;
     margin-bottom: 0.4rem;
-    /* No blur, too hard to read on a phone screen */
-    -webkit-text-stroke: 0.5px #ff99dd;
-    text-stroke: 0.5px #ff99dd;
   }
-}
 
-  h2 {
+  body h2 {
     font-size: clamp(0.9rem, 3.5vw, 1.1rem);
-    color: #bffff3;
-    text-shadow: none !important;
+    color: #d4fff7;
+    text-shadow:
+      0 0 1px rgba(0, 255, 153, 0.4),
+      0 0 3px rgba(0, 255, 153, 0.2);
   }
 
-  /* Reduce flicker effect on phone displays */
+  /* Less card glow */
   .card {
     animation: none;
-    box-shadow: 0 0 15px rgba(255, 0, 153, 0.6);
+    box-shadow: 0 0 12px rgba(255, 0, 153, 0.5);
   }
 }
 
