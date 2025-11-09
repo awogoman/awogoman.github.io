@@ -273,33 +273,34 @@ html {
 }
 
 /* Mobile screens */
-@media (max-width: 800px) {
+@media (max-width: 900px) {
   body h1 {
     font-size: clamp(1.6rem, 7vw, 2rem);
-    color: #ff5fb8 !important;
-    /* Very little glow for readability */
+    color: #ff6fcb;
+    /* Soft glow */
     text-shadow:
-      0 0 2px rgba(255, 0, 153, 0.6),
-      0 0 4px rgba(255, 0, 153, 0.4);
-    -webkit-text-stroke: 0.4px #ff99dd;
-    text-stroke: 0.4px #ff99dd;
-    letter-spacing: 0.7px;
+      0 0 4px rgba(255, 0, 153, 0.6),
+      0 0 8px rgba(255, 0, 153, 0.4),
+      0 0 12px rgba(255, 0, 153, 0.2);
+    -webkit-text-stroke: 0.3px #ffa6e3;
+    text-stroke: 0.3px #ffa6e3;
+    letter-spacing: 0.6px;
     line-height: 1.25;
     margin-bottom: 0.4rem;
   }
 
   body h2 {
     font-size: clamp(0.9rem, 3.5vw, 1.1rem);
-    color: #d4fff7;
+    color: #bffff7;
     text-shadow:
-      0 0 1px rgba(0, 255, 153, 0.4),
-      0 0 3px rgba(0, 255, 153, 0.2);
+      0 0 2px rgba(0, 255, 153, 0.4),
+      0 0 5px rgba(0, 255, 153, 0.2);
+    line-height: 1.4;
   }
 
-  /* Less card glow */
   .card {
     animation: none;
-    box-shadow: 0 0 12px rgba(255, 0, 153, 0.5);
+    box-shadow: 0 0 15px rgba(255, 0, 153, 0.5);
   }
 }
 
