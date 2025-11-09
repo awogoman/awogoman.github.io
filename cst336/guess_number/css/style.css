@@ -201,6 +201,77 @@ button.secondary {
   }
 }
 
+/* Small screen changes for readability */
+/* Text scales across screen widths */
+html {
+  font-size: clamp(12px, 1.6vw + 10px, 14px);
+}
+
+/* Disable flicker */
+@media (prefers-reduced-motion: reduce) {
+  .card { animation: none !important; }
+}
+
+/* Phones / narrow screens */
+@media (max-width: 600px) {
+  /* Make headings larger and reduce neon blur */
+  h1 {
+    font-size: clamp(1.6rem, 8vw, 2.1rem);
+    text-shadow: 0 0 6px var(--accent), 0 0 12px var(--accent);
+    letter-spacing: 0.5px;
+  }
+
+  h2 {
+    font-size: clamp(0.9rem, 4vw, 1.1rem);
+    color: #e7fffb;
+    text-shadow: 0 0 4px var(--accent);
+    line-height: 1.4;
+    margin-top: 0.75rem;
+  }
+
+  /* Ease flicker on small screens for readability */
+  .card { 
+    animation: flicker 4s infinite alternate;
+    padding: 1.25rem;
+    margin: 1.25rem auto;
+  }
+
+  /* Sizing for phone screens */
+  .insert-coin {
+    font-size: clamp(0.85rem, 3.8vw, 1rem);
+    text-shadow: 0 0 6px var(--accent2), 0 0 10px var(--accent2);
+    margin-top: 1rem;
+  }
+
+  /* Slightly larger input */
+  input[type="text"] {
+    width: 7rem;
+    padding: 0.9rem;
+    font-size: 1.05rem;
+  }
+
+  button {
+    padding: 0.9rem 1.1rem;
+    transform: none;
+  }
+
+  /* Stack panels vertically */
+  .row {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .panel {
+    width: 100%;
+    min-width: 0;
+  }
+}
+
+/* Readability for phone screens */
+@media (max-width: 380px) {
+  h1 { font-size: 1.5rem; }
+  h2 { font-size: 0.95rem; }
+}
+
 /* State classes */
 .hidden { display: none !important; }
 .disabled { opacity: 0.4; pointer-events: none; }
