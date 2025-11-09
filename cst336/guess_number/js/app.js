@@ -10,6 +10,7 @@
   const attemptsEl = document.getElementById("attempts");
   const winsEl = document.getElementById("wins");
   const lossesEl = document.getElementById("losses");
+  const insertCoinEl = document.querySelector(".insert-coin");
 
   /* Game state variables */
   let target = rand1to99();  // random 1 - 99
@@ -17,6 +18,7 @@
   let wins = 0;              // total wins
   let losses = 0;            // total losses
   let finished = false;      // flag to disable guessing
+  let coinInserted = false;  // coin animation fades once
 
   /* 8bit sound effects:
   source: https://github.com/learosema/retro-sound */
@@ -117,16 +119,22 @@
 
   /* Resets for a new round */
   function resetGame() {
-    attempts = 0;
-    attemptsEl.textContent = attempts;
-    setError("");
-    setMessage("New round started! Guess a number between 1 and 99.");
-    guessesEl.textContent = "—";
-    target = rand1to99();
-    enableGuessing();
-    input.value = "";
-  }
+  attempts = 0;
+  attemptsEl.textContent = attempts;
+  setError("");
+  setMessage("New round started! Guess a number between 1 and 99.");
+  guessesEl.textContent = "—";
+  target = rand1to99();
+  enableGuessing();
+  input.value = "";
 
+  /* Insert coin reappear */
+  if (insertCoinEl) {
+    insertCoinEl.classList.remove("fade-out"); // remove fade
+    coinInserted = false;                      // set flag
+  }
+}
+  
   /*  Checks player input and returns either a number or an error message. */
   function validate(raw) {
     const v = raw.trim();
@@ -185,6 +193,20 @@
   guessBtn.addEventListener("click", ensureAudio);
   resetBtn.addEventListener("click", ensureAudio);
   input.addEventListener("keydown", ensureAudio);
+
+  /* Coin animation fades */
+  function fadeInsertCoin() {
+    if (!coinInserted && insertCoinEl) {
+      insertCoinEl.classList.add("fade-out");
+      coinInserted = true;
+    }
+  }
+  
+  guessBtn.addEventListener("click", fadeInsertCoin);
+  resetBtn.addEventListener("click", fadeInsertCoin);
+  input.addEventListener("keydown", fadeInsertCoin);
+  window.addEventListener("click", fadeInsertCoin); // any click counts as coin insert
+
 
   guessBtn.addEventListener("click", handleGuess);
   resetBtn.addEventListener("click", resetGame);
