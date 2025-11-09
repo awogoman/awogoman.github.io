@@ -276,16 +276,16 @@ html {
 @media (max-width: 650px) {
   h1 {
     font-size: clamp(1.6rem, 8vw, 2rem);
-    color: var(--accent);
-    /* Less glow effect */
-    text-shadow:
-      0 0 1px var(--accent),
-      0 0 3px var(--accent),
-      0 0 4px rgba(255, 0, 153, 0.6);
-    line-height: 1.2;
-    letter-spacing: 0.5px;
+    color: #ff4fb3;           /* tweak color for readability */
+    text-shadow: none;        /* remove neon glow */
+    letter-spacing: 0.8px;    /* pixel font clarity */
+    line-height: 1.25;
     margin-bottom: 0.4rem;
+    /* No blur, too hard to read on a phone screen */
+    -webkit-text-stroke: 0.5px #ff99dd;
+    text-stroke: 0.5px #ff99dd;
   }
+}
 
   h2 {
     font-size: clamp(0.85rem, 3.8vw, 1rem);
