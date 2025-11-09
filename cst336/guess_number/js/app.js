@@ -158,7 +158,7 @@
 
     /* Player wins */
     if (guess === target) {
-      setMessage(`🎉 Correct! You got it in ${attempts} ${attempts === 1 ? "try" : "tries"}.`);
+      setMessage(`Correct! You got it in ${attempts} ${attempts === 1 ? "try" : "tries"}.`);
       wins += 1;
       winsEl.textContent = wins;
       playWinChime();
