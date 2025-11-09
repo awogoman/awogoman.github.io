@@ -1,1 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Guess the Number</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <script defer src="js/app.js"></script>
+  </head>
+  <body>
+    <header>
+      <h1>Guess the Number!</h1>
+      <h2>Guess a number between 1 and 99 in seven attempts!</h2>
+    </header>
 
+    <main id="main" class="card" role="main">
+      <label for="playerGuess" class="prompt">Enter a guess:</label>
+      <input type="text" id="playerGuess" size="5" inputmode="numeric" aria-describedby="error message" />
+      <button id="guessBtn" type="button">Guess</button>
+      <button id="resetBtn" class="secondary" type="button" hidden>Reset</button>
+
+      <p id="error" class="error" aria-live="polite"></p>
+      <p id="message" class="message" aria-live="polite"></p>
+
+      <div class="row">
+        <div class="panel">
+          <h3>Previous guesses:</h3>
+          <div id="guesses" class="guesses" aria-live="polite">—</div>
+        </div>
+        <div class="panel">
+          <h3>Stats</h3>
+          <ul class="stats">
+            <li>Attempts: <span id="attempts">0</span> / 7</li>
+            <li>Wins: <span id="wins">0</span></li>
+            <li>Losses: <span id="losses">0</span></li>
+          </ul>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
