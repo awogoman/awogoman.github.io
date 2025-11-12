@@ -8,7 +8,7 @@ body {
 }
 
 .cowboy-header {
-  background: linear-gradient(to bottom, #e0c9a6 0%, #f6f0e0 100%);
+  background: linear-gradient(to bottom, #e6d1a3 0%, #f6f0e0 100%);
   border-bottom: 3px solid #a07b48;
 }
 
@@ -21,10 +21,10 @@ body {
 
 .cowboy-header p {
   font-family: 'IM Fell English SC', serif;
-  color: #2a1c0f;
-  font-size: 1.15rem;
-  text-shadow: 1px 1px 0 #f6f0e0;
-  margin-top: 0.5rem;
+  color: #1b0f07;
+  font-size: 1.2rem;
+  text-shadow: 1px 1px 2px rgba(255, 244, 220, 0.6);
+  font-weight: 600;
 }
 
 .desert-bg {
