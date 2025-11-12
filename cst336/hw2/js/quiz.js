@@ -182,5 +182,5 @@ function grade(){
 
   /* Totals */
   document.getElementById('totalScore').textContent = `Total Score: ${scorePct}/100`;
-  document.getElementById('totalAttempts').textContent = `Attempts (from Web Storage): ${now}`;
+  document.getElementById('totalAttempts').textContent = `Attempts: ${now}`;
 }
