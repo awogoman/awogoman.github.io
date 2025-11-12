@@ -112,32 +112,32 @@ function grade(){
     : 'Answer is 11 (Alaska plus 10 in the lower 48).';
   if(q5ok) score += 10; else if(q5v==='') missing.push('Q5');
 
-  /* Q6: Phoenix latitude ~33.5°N (±2 accepted) */
+  /* Q6: Denver latitude ~39.7°N (±2) */
   const q6num = Number(document.getElementById('q6').value);
-  const q6ok = Math.abs(q6num - 33.5) <= 2;
+  const q6ok = Math.abs(q6num - 39.7) <= 2;
   setMark('markImg6', q6ok);
   document.getElementById('q6Feedback').textContent = q6ok
-    ? 'Right in the ballpark! Phoenix sits about ~33.5°N.'
-    : 'Phoenix sits about 33.5° north of the equator.';
+    ? 'Right on target! Denver sits about ~39.7°N.'
+    : 'Denver sits about 39.7° north of the equator.';
   if(q6ok) score += 10;
 
-  /* Q7: TX */
+  /* Q7: AZ */
   const q7 = (document.getElementById('q7').value || '').trim().toUpperCase();
-  const q7ok = q7 === 'TX';
+  const q7ok = q7 === 'AZ';
   setMark('markImg7', q7ok);
   document.getElementById('q7Feedback').textContent = q7ok
-    ? 'Correct! TX for the Lone Star State.'
-    : 'Tip o the hat, it’s TX.';
+    ? 'Correct! AZ for the Grand Canyon State.'
+    : 'Tip o the hat, it’s AZ.';
   if(q7ok) score += 10; else if(!q7) missing.push('Q7');
 
-  /* Q8: Multi-select “New” states: NY, NJ, NM, NH */
+  /* Q8: Border with Mexico */
   const q8 = Array.from(document.getElementById('q8').selectedOptions).map(o=>o.value);
-  const correctNew = ['New York','New Jersey','New Mexico','New Hampshire'];
-  const q8ok = correctNew.every(v=>q8.includes(v)) && q8.length===4;
+  const correctBorder = ['California','Arizona','New Mexico','Texas'];
+  const q8ok = correctBorder.every(v=>q8.includes(v)) && q8.length===4;
   setMark('markImg8', q8ok);
   document.getElementById('q8Feedback').textContent = q8ok
-    ? 'Yep! All four “New” territories roped in nicely.'
-    : 'The answers are New York, New Jersey, New Mexico, and New Hampshire.';
+    ? 'Yup! California, Arizona, New Mexico, and Texas meet the southern frontier.'
+    : 'The answers are California, Arizona, New Mexico, and Texas.';
   if(q8ok) score += 10; else if(q8.length===0) missing.push('Q8');
 
   /* Q9: True */
@@ -145,19 +145,19 @@ function grade(){
   const q9ok = q9sel && q9sel.value === 'True';
   setMark('markImg9', !!q9ok);
   document.getElementById('q9Feedback').textContent = q9ok
-    ? 'True as a trusty steed! Alaska reaches east of 180°.'
-    : 'It’s true, those Aleutian islands cross the 180th meridian.';
+    ? 'True as a trusty steed, the Mississippi runs from Minnesota to the Gulf.'
+    : 'It’s true! The Mississippi River flows from Minnesota to the Gulf of Mexico.';
   if(q9ok) score += 10; else if(!q9sel) missing.push('Q9');
 
-  /* Q10: Cheyenne */
+  /* Q10: Austin */
   const q10 = (document.getElementById('q10').value || '').trim().toLowerCase();
-  const q10ok = q10 === 'cheyenne';
+  const q10ok = q10 === 'austin';
   setMark('markImg10', q10ok);
   document.getElementById('q10Feedback').textContent = q10ok
-    ? 'Correct! Cheyenne, where the rodeo rolls in.'
-    : 'That capital is Cheyenne.';
+    ? 'Correct! Austin is the capital of Texas.'
+    : 'The capital is Austin.';
   if(q10ok) score += 10; else if(!q10) missing.push('Q10');
-
+  
   /* Totals, attempts, messages */
   const scorePct = score; // total out of 100
   const scoreBanner = document.getElementById('scoreBanner');
