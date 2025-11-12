@@ -45,10 +45,10 @@ body.desert-bg { background: linear-gradient(#fdf5e6, #f6e7c1); }
 /* Paper-color card */
 .tumbleweed-card{ background:#fff9ec; border-radius: 1rem; }
 
-/* Pass/fail images line up with text */
-.mark img{ height:26px; width:26px; vertical-align:text-bottom; }
+/* Pass/fail images */
+.mark img { height: 26px; width: 26px; vertical-align: middle; }
 
-/* Cactus drawn in CSS */
+/* Cactus */
 .cactus{
   position: fixed; bottom:0; width:80px; height:120px;
   background:#2e7d32; border-radius:30px 30px 0 0;
@@ -72,7 +72,7 @@ body.desert-bg { background: linear-gradient(#fdf5e6, #f6e7c1); }
   100%{ transform: translateX(120vw) rotate(1080deg); }
 }
 
-/* Footer bar */
+/* Footer */
 footer{ border-top: 6px solid #3d2718; }
 
 /* Accessibility */
