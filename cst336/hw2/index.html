@@ -5,15 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>US Geography Quiz</title>
 
-  <!-- Bootstrap for layout and theme -->
+  <!-- Bootstrap -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
-  <!-- Underscore for randomizing -->
+  <!-- Underscore -->
   <script src="https://cdn.jsdelivr.net/npm/underscore@1.13.6/underscore-umd-min.js"></script>
-
-  <!-- Google Fonts -->
+  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Rye&family=IM+Fell+English+SC&display=swap" rel="stylesheet">
-  
-  <!-- Western style -->
+
+  <!-- CSS -->
   <link rel="stylesheet" href="css/west.css" />
 </head>
 
@@ -21,7 +20,7 @@
   <!-- Header -->
   <header class="py-5 mb-4 shadow-sm cowboy-header">
     <h1 class="display-5 fw-bold">US Geography Quiz</h1>
-    <p class="lead m-0">Saddle up, partner! Let's see if you're ready to ride out west.</p>
+    <p class="lead m-0">Howdy, partner! Let’s see if you're ready to ride out west.</p>
   </header>
 
   <main class="container mb-5">
@@ -30,89 +29,112 @@
         <div class="card border-0 shadow tumbleweed-card">
           <div class="card-body p-4 p-md-5">
 
-            <!-- Score & attempts -->
+            <!-- Score & Attempts banners -->
             <div id="scoreBanner" class="alert d-none" role="alert"></div>
             <div id="attemptsBanner" class="alert alert-secondary small" role="alert"></div>
 
-            <!-- Text -->
+            <div id="validationFdbk" class="text-danger fw-semibold mb-3" aria-live="polite"></div>
+
+            <!-- Q1: Text -->
             <section class="mb-4 text-start">
-              <h3 class="h5 mb-2"><span id="markImg1" class="me-2"></span>1) What is the capital of the Golden State where the Forty-Niners once struck gold?</h3>
+              <h3 class="h5 mb-2">
+                <span id="markImg1" class="mark me-2"></span>
+                1) What is the capital of the Golden State where the Forty-Niners once struck gold?
+              </h3>
               <label for="q1" class="form-label">Type the city name</label>
               <input id="q1" class="form-control" type="text" autocomplete="off" />
               <div id="q1Feedback" class="mt-2"></div>
             </section>
 
-            <!-- Dropdown -->
+            <!-- Q2: Dropdown -->
             <section class="mb-4 text-start">
-              <h3 class="h5 mb-2"><span id="markImg2" class="me-2"></span>2) Which river marks the dusty trail between Texas and Old Mexico?</h3>
+              <h3 class="h5 mb-2">
+                <span id="markImg2" class="mark me-2"></span>
+                2) Which river marks the dusty trail between Texas and Old Mexico?
+              </h3>
               <label for="q2" class="form-label">Choose one river</label>
               <select id="q2" class="form-select">
                 <option value="">-- Select --</option>
                 <option>Colorado</option>
                 <option>Rio Grande</option>
                 <option>Arkansas</option>
-                <option>Nile</option>
+                <option>Brazos</option>
               </select>
               <div id="q2Feedback" class="mt-2"></div>
             </section>
 
-            <!-- Checkboxes -->
+            <!-- Q3: Checkboxes -->
             <section class="mb-4 text-start">
-              <h3 class="h5 mb-2"><span id="markImg3" class="me-2"></span>3) Which faces are chiseled into the Black Hills of South Dakota (Mount Rushmore)?</h3>
+              <h3 class="h5 mb-2">
+                <span id="markImg3" class="mark me-2"></span>
+                3) Which leaders are carved into Mount Rushmore?
+              </h3>
               <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="Jackson" />
+                <input class="form-check-input" type="checkbox" id="Jackson">
                 <label class="form-check-label" for="Jackson">A. Jackson</label>
               </div>
               <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="Franklin" />
+                <input class="form-check-input" type="checkbox" id="Franklin">
                 <label class="form-check-label" for="Franklin">B. Franklin</label>
               </div>
               <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="Washington" />
+                <input class="form-check-input" type="checkbox" id="Washington">
                 <label class="form-check-label" for="Washington">G. Washington</label>
               </div>
               <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="Jefferson" />
+                <input class="form-check-input" type="checkbox" id="Jefferson">
                 <label class="form-check-label" for="Jefferson">T. Jefferson</label>
               </div>
               <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="Roosevelt" />
+                <input class="form-check-input" type="checkbox" id="Roosevelt">
                 <label class="form-check-label" for="Roosevelt">T. Roosevelt</label>
               </div>
               <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="Lincoln" />
+                <input class="form-check-input" type="checkbox" id="Lincoln">
                 <label class="form-check-label" for="Lincoln">A. Lincoln</label>
               </div>
               <div id="q3Feedback" class="mt-2"></div>
             </section>
 
-            <!-- Radio -->
+            <!-- Q4: Radio -->
             <section class="mb-4 text-start">
-              <h3 class="h5 mb-2"><span id="markImg4" class="me-2"></span>4) What is the smallest U.S. state?</h3>
+              <h3 class="h5 mb-2">
+                <span id="markImg4" class="mark me-2"></span>
+                4) What is the smallest U.S. state?
+              </h3>
               <div id="q4Choices" class="d-flex flex-wrap gap-3"></div>
               <div id="q4Feedback" class="mt-2"></div>
             </section>
 
-            <!-- Number -->
+            <!-- Q5: Number -->
             <section class="mb-4 text-start">
-              <h3 class="h5 mb-2"><span id="markImg5" class="me-2"></span>5) How many U.S. states share a land border with Canada, the edge of the northern frontier?</h3>
+              <h3 class="h5 mb-2">
+                <span id="markImg5" class="mark me-2"></span>
+                5) How many U.S. states share a land border with Canada?
+              </h3>
               <label for="q5" class="form-label">Enter a number</label>
               <input id="q5" class="form-control" type="number" min="0" max="20" />
               <div id="q5Feedback" class="mt-2"></div>
             </section>
 
-            <!-- Range -->
+            <!-- Q6: Range -->
             <section class="mb-4 text-start">
-              <h3 class="h5 mb-2"><span id="markImg6" class="me-2"></span>6) What’s the approximate latitude (°N) of Phoenix, Arizona?</h3>
+              <h3 class="h5 mb-2">
+                <span id="markImg6" class="mark me-2"></span>
+                6) Approximate latitude (°N) of Phoenix, Arizona?
+              </h3>
               <label for="q6" class="form-label">Move the slider (20–50)</label>
               <input id="q6" class="form-range" type="range" min="20" max="50" step="1" value="35" />
               <output id="q6Out" class="d-block mt-1">35</output>
               <div id="q6Feedback" class="mt-2"></div>
             </section>
 
-            <!-- Datalist -->
+            <!-- Q7: Datalist text -->
             <section class="mb-4 text-start">
-              <h3 class="h5 mb-2"><span id="markImg7" class="me-2"></span>7) Enter the two-letter postal code for the Lone Star State.</h3>
+              <h3 class="h5 mb-2">
+                <span id="markImg7" class="mark me-2"></span>
+                7) Two-letter postal code for the Lone Star State.
+              </h3>
               <label for="q7" class="form-label">Choose or type the code</label>
               <input id="q7" class="form-control" list="stateCodes" autocomplete="off" />
               <datalist id="stateCodes">
@@ -121,24 +143,30 @@
               <div id="q7Feedback" class="mt-2"></div>
             </section>
 
-            <!-- Select multiple -->
+            <!-- Q8: Select multiple -->
             <section class="mb-4 text-start">
-              <h3 class="h5 mb-2"><span id="markImg8" class="me-2"></span>8) Select all states that start with the word “New”.</h3>
+              <h3 class="h5 mb-2">
+                <span id="markImg8" class="mark me-2"></span>
+                8) Select all states that start with the word “New.”
+              </h3>
               <label for="q8" class="form-label">Hold Cmd/Ctrl to select multiple</label>
               <select id="q8" class="form-select" multiple size="6">
-                <option>York</option>
-                <option>Jersey</option>
-                <option>Mexico</option>
-                <option>Hampshire</option>
+                <option>New York</option>
+                <option>New Jersey</option>
+                <option>New Mexico</option>
+                <option>New Hampshire</option>
                 <option>Nevada</option>
-                <option>Dakota</option>
+                <option>North Dakota</option>
               </select>
               <div id="q8Feedback" class="mt-2"></div>
             </section>
 
-            <!-- True/False -->
+            <!-- Q9: True/False -->
             <section class="mb-4 text-start">
-              <h3 class="h5 mb-2"><span id="markImg9" class="me-2"></span>9) True or False: Alaska stretches so far across the map that it’s both the westernmost and easternmost U.S. state.</h3>
+              <h3 class="h5 mb-2">
+                <span id="markImg9" class="mark me-2"></span>
+                9) True or False: Alaska is both the westernmost and easternmost U.S. state.
+              </h3>
               <div class="form-check form-check-inline">
                 <input class="form-check-input" type="radio" name="q9" id="q9t" value="True">
                 <label class="form-check-label" for="q9t">True</label>
@@ -150,9 +178,12 @@
               <div id="q9Feedback" class="mt-2"></div>
             </section>
 
-            <!-- Pattern -->
+            <!-- Q10: Pattern text -->
             <section class="mb-2 text-start">
-              <h3 class="h5 mb-2"><span id="markImg10" class="me-2"></span>10) What’s the capital of Wyoming?</h3>
+              <h3 class="h5 mb-2">
+                <span id="markImg10" class="mark me-2"></span>
+                10) What’s the capital of Wyoming?
+              </h3>
               <label for="q10" class="form-label">3–20 letters</label>
               <input id="q10" class="form-control" type="text" pattern="[A-Za-z\s-]{3,20}" />
               <div id="q10Feedback" class="mt-2"></div>
@@ -168,16 +199,16 @@
     </div>
   </main>
 
-  <!-- Western elements -->
-  <img src="img/cactus.svg" class="cactus-img cactus-left" alt="decorative cactus" aria-hidden="true">
+  <!-- Cactus -->
+  <img src="img/cactus.svg" class="cactus-img cactus-left"  alt="decorative cactus" aria-hidden="true">
   <img src="img/cactus.svg" class="cactus-img cactus-right" alt="decorative cactus" aria-hidden="true">
 
   <!-- Footer -->
   <footer class="mt-5 py-3 bg-dark text-light">
-    <p class="m-0">Wogoman © 2025 – CST336 HW2: US Geography Quiz</p>
+    <p class="m-0">Created by <strong>Wogoman</strong> · CST336 HW2 · 2025</p>
   </footer>
 
-  <!-- Include quiz JavaScript -->
+  <!-- Logic -->
   <script src="js/quiz.js"></script>
 </body>
 </html>
