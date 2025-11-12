@@ -1,8 +1,21 @@
 /* US Geography Quiz */
 
-/* Inline SVGs */
-const IMG_OK = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="%2328a745"/><path d="M6 12l3.5 3.5L18 7" stroke="white" stroke-width="3" fill="none"/></svg>';
-const IMG_X  = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="%23dc3545"/><path d="M7 7l10 10M17 7L7 17" stroke="white" stroke-width="3"/></svg>';
+/* SVG markup */
+const OK_SVG = `
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+  <circle cx="12" cy="12" r="12" fill="#28a745"/>
+  <path d="M6 12l3.5 3.5L18 7" stroke="white" stroke-width="3" fill="none"/>
+</svg>`;
+
+const X_SVG = `
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+  <circle cx="12" cy="12" r="12" fill="#dc3545"/>
+  <path d="M7 7l10 10M17 7L7 17" stroke="white" stroke-width="3" fill="none"/>
+</svg>`;
+
+const IMG_OK = `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(OK_SVG)}`;
+const IMG_X  = `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(X_SVG)}`;
+
 
 function setMark(id, ok){
   const slot = document.getElementById(id);
