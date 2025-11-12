@@ -1,4 +1,28 @@
 /* Old Western Theme */
+
+/* --- Western Typography --- */
+body {
+  font-family: 'IM Fell English SC', serif;
+  color: #3c2b1a;
+  background-color: #f6f0e0;
+}
+
+.cowboy-header h1 {
+  font-family: 'Rye', cursive;
+  color: #432a14;
+  letter-spacing: 2px;
+  text-shadow: 2px 2px 0 #d2b48c;
+}
+
+.cowboy-header p {
+  font-family: 'IM Fell English SC', serif;
+  color: #5a3e2b;
+}
+
+.desert-bg {
+  background: radial-gradient(circle at bottom, #f6f0e0 70%, #e0c9a6);
+}
+
 /* Desert gradient background */
 body.desert-bg { background: linear-gradient(#fdf5e6, #f6e7c1); }
 
