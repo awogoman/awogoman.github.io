@@ -8,15 +8,25 @@ body {
 }
 
 .cowboy-header {
-  background: linear-gradient(to bottom, #e6d1a3 0%, #f6f0e0 100%);
-  border-bottom: 3px solid #a07b48;
+  background: linear-gradient(to bottom, #dcb174 0%, #f6f0e0 100%);
+  border-bottom: 4px solid #7b4b1d;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+  box-shadow: 0 6px 10px rgba(0,0,0,0.25);
 }
 
 .cowboy-header h1 {
   font-family: 'Rye', cursive;
-  color: #432a14;
-  letter-spacing: 2px;
-  text-shadow: 2px 2px 0 #d2b48c;
+  color: #3c1a04;
+  letter-spacing: 3px;
+  font-size: 3rem;
+  text-transform: uppercase;
+  text-shadow:
+    3px 3px 0 #e0c9a6,
+    5px 5px 8px rgba(0,0,0,0.4);
+  background: linear-gradient(to bottom, #f2d398, #d49a5b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .cowboy-header p {
