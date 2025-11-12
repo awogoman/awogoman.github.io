@@ -137,7 +137,7 @@ function grade(){
   setMark('markImg8', q8ok);
   document.getElementById('q8Feedback').textContent = q8ok
     ? 'Yep! All four “New” territories roped in nicely.'
-    : 'Pick New York, New Jersey, New Mexico, and New Hampshire.';
+    : 'The answers are New York, New Jersey, New Mexico, and New Hampshire.';
   if(q8ok) score += 10; else if(q8.length===0) missing.push('Q8');
 
   /* Q9: True */
