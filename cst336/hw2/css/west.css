@@ -37,6 +37,16 @@ body {
   font-weight: 600;
 }
 
+.cowboy-header::before,
+.cowboy-header::after {
+  content: "✯✯✯";
+  display: block;
+  font-family: 'Rye', cursive;
+  color: #3c1a04;
+  font-size: 1.2rem;
+  letter-spacing: 8px;
+}
+
 .desert-bg {
   background: radial-gradient(circle at bottom, #f6f0e0 70%, #e0c9a6);
 }
