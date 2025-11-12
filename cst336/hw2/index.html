@@ -1,1 +1,181 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>US Geography Quiz</title>
 
+  <!-- Bootstrap for layout and theme -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+  <!-- Underscore for randomizing -->
+  <script src="https://cdn.jsdelivr.net/npm/underscore@1.13.6/underscore-umd-min.js"></script>
+
+  <!-- Western style -->
+  <link rel="stylesheet" href="css/west.css" />
+</head>
+
+<body class="text-center desert-bg">
+  <!-- Header -->
+  <header class="py-5 mb-4 shadow-sm cowboy-header">
+    <h1 class="display-5 fw-bold">US Geography Quiz</h1>
+    <p class="lead m-0">Saddle up, partner! Let's see if you're ready to ride out west.</p>
+  </header>
+
+  <main class="container mb-5">
+    <div class="row justify-content-center">
+      <div class="col-12 col-lg-10 col-xl-8">
+        <div class="card border-0 shadow tumbleweed-card">
+          <div class="card-body p-4 p-md-5">
+
+            <!-- Score & attempts -->
+            <div id="scoreBanner" class="alert d-none" role="alert"></div>
+            <div id="attemptsBanner" class="alert alert-secondary small" role="alert"></div>
+
+            <!-- Text -->
+            <section class="mb-4 text-start">
+              <h3 class="h5 mb-2"><span id="markImg1" class="me-2"></span>1) What is the capital of the Golden State where the Forty-Niners once struck gold?</h3>
+              <label for="q1" class="form-label">Type the city name</label>
+              <input id="q1" class="form-control" type="text" autocomplete="off" />
+              <div id="q1Feedback" class="mt-2"></div>
+            </section>
+
+            <!-- Dropdown -->
+            <section class="mb-4 text-start">
+              <h3 class="h5 mb-2"><span id="markImg2" class="me-2"></span>2) Which river marks the dusty trail between Texas and Old Mexico?</h3>
+              <label for="q2" class="form-label">Choose one river</label>
+              <select id="q2" class="form-select">
+                <option value="">-- Select --</option>
+                <option>Colorado</option>
+                <option>Rio Grande</option>
+                <option>Arkansas</option>
+                <option>Nile</option>
+              </select>
+              <div id="q2Feedback" class="mt-2"></div>
+            </section>
+
+            <!-- Checkboxes -->
+            <section class="mb-4 text-start">
+              <h3 class="h5 mb-2"><span id="markImg3" class="me-2"></span>3) Which faces are chiseled into the Black Hills of South Dakota (Mount Rushmore)?</h3>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="Jackson" />
+                <label class="form-check-label" for="Jackson">A. Jackson</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="Franklin" />
+                <label class="form-check-label" for="Franklin">B. Franklin</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="Washington" />
+                <label class="form-check-label" for="Washington">G. Washington</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="Jefferson" />
+                <label class="form-check-label" for="Jefferson">T. Jefferson</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="Roosevelt" />
+                <label class="form-check-label" for="Roosevelt">T. Roosevelt</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="Lincoln" />
+                <label class="form-check-label" for="Lincoln">A. Lincoln</label>
+              </div>
+              <div id="q3Feedback" class="mt-2"></div>
+            </section>
+
+            <!-- Radio -->
+            <section class="mb-4 text-start">
+              <h3 class="h5 mb-2"><span id="markImg4" class="me-2"></span>4) What is the smallest U.S. state?</h3>
+              <div id="q4Choices" class="d-flex flex-wrap gap-3"></div>
+              <div id="q4Feedback" class="mt-2"></div>
+            </section>
+
+            <!-- Number -->
+            <section class="mb-4 text-start">
+              <h3 class="h5 mb-2"><span id="markImg5" class="me-2"></span>5) How many U.S. states share a land border with Canada, the edge of the northern frontier?</h3>
+              <label for="q5" class="form-label">Enter a number</label>
+              <input id="q5" class="form-control" type="number" min="0" max="20" />
+              <div id="q5Feedback" class="mt-2"></div>
+            </section>
+
+            <!-- Range -->
+            <section class="mb-4 text-start">
+              <h3 class="h5 mb-2"><span id="markImg6" class="me-2"></span>6) What’s the approximate latitude (°N) of Phoenix, Arizona?</h3>
+              <label for="q6" class="form-label">Move the slider (20–50)</label>
+              <input id="q6" class="form-range" type="range" min="20" max="50" step="1" value="35" />
+              <output id="q6Out" class="d-block mt-1">35</output>
+              <div id="q6Feedback" class="mt-2"></div>
+            </section>
+
+            <!-- Datalist -->
+            <section class="mb-4 text-start">
+              <h3 class="h5 mb-2"><span id="markImg7" class="me-2"></span>7) Enter the two-letter postal code for the Lone Star State.</h3>
+              <label for="q7" class="form-label">Choose or type the code</label>
+              <input id="q7" class="form-control" list="stateCodes" autocomplete="off" />
+              <datalist id="stateCodes">
+                <option value="CA"><option value="TX"><option value="NM"><option value="AZ"><option value="NV">
+              </datalist>
+              <div id="q7Feedback" class="mt-2"></div>
+            </section>
+
+            <!-- Select multiple -->
+            <section class="mb-4 text-start">
+              <h3 class="h5 mb-2"><span id="markImg8" class="me-2"></span>8) Select all states that start with the word “New”.</h3>
+              <label for="q8" class="form-label">Hold Cmd/Ctrl to select multiple</label>
+              <select id="q8" class="form-select" multiple size="6">
+                <option>York</option>
+                <option>Jersey</option>
+                <option>Mexico</option>
+                <option>Hampshire</option>
+                <option>Nevada</option>
+                <option>Dakota</option>
+              </select>
+              <div id="q8Feedback" class="mt-2"></div>
+            </section>
+
+            <!-- True/False -->
+            <section class="mb-4 text-start">
+              <h3 class="h5 mb-2"><span id="markImg9" class="me-2"></span>9) True or False: Alaska stretches so far across the map that it’s both the westernmost and easternmost U.S. state.</h3>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="q9" id="q9t" value="True">
+                <label class="form-check-label" for="q9t">True</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="q9" id="q9f" value="False">
+                <label class="form-check-label" for="q9f">False</label>
+              </div>
+              <div id="q9Feedback" class="mt-2"></div>
+            </section>
+
+            <!-- Pattern -->
+            <section class="mb-2 text-start">
+              <h3 class="h5 mb-2"><span id="markImg10" class="me-2"></span>10) What’s the capital of Wyoming?</h3>
+              <label for="q10" class="form-label">3–20 letters (pattern validated)</label>
+              <input id="q10" class="form-control" type="text" pattern="[A-Za-z\s-]{3,20}" />
+              <div id="q10Feedback" class="mt-2"></div>
+            </section>
+
+            <button id="submitBtn" class="btn btn-primary btn-lg mt-2">Submit Quiz</button>
+
+            <div id="totalScore" class="h5 mt-4"></div>
+            <div id="totalAttempts" class="mt-2"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Western elements -->
+  <img src="img/cactus.svg" class="cactus-img cactus-left" alt="decorative cactus" aria-hidden="true">
+  <img src="img/cactus.svg" class="cactus-img cactus-right" alt="decorative cactus" aria-hidden="true">
+  <img src="img/tumbleweed.svg" class="tumbleweed-img" alt="rolling tumbleweed" aria-hidden="true">
+
+  <!-- Footer -->
+  <footer class="mt-5 py-3 bg-dark text-light">
+    <p class="m-0">Wogoman © 2025 – CST336 HW2: US Geography Quiz</p>
+  </footer>
+
+  <!-- Include quiz JavaScript -->
+  <script src="js/quiz.js"></script>
+</body>
+</html>
