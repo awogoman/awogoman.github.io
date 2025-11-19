@@ -43,6 +43,7 @@ function getGenderInfo(code) {
 /* Main form handler: validate, call the API, and display results */
   form.addEventListener("submit", function (event) {
   event.preventDefault(); // prevent reload
+  nameCard.classList.remove("reveal");
 
   // Get user input
   const rawName = nameInput.value.trim();
@@ -65,7 +66,7 @@ function getGenderInfo(code) {
   // Call API, remove after debugging
   if (API_KEY === "PUT_YOUR_API_KEY_HERE") {
     // Debugging API key
-    showMessage("Please put your BehindTheName API key into script.js.", "error");
+    showMessage("Put API key into script.js.", "error");
     resultsSection.classList.add("hidden");
     return;
   }
@@ -138,6 +139,7 @@ function getGenderInfo(code) {
 
       // Show the results section
       resultsSection.classList.remove("hidden");
+      nameCard.classList.add("reveal");
       showMessage("Name found! See the details below.", "info");
     })
     .catch(function (error) {
