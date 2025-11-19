@@ -130,6 +130,9 @@ button:active {
 button.secondary {
   background-color: #8b5e34;
   margin-left: 0.3rem;
+  margin-bottom: 1.2rem;
+  margin-top: 0.5rem;
+  display: inline-block;
 }
 
 button.secondary:hover {
