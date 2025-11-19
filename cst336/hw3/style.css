@@ -126,6 +126,16 @@ button:active {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.22);
 }
 
+/* Random button */
+button.secondary {
+  background-color: #8b5e34;
+  margin-left: 0.3rem;
+}
+
+button.secondary:hover {
+  background-color: #a97442;
+}
+
 /* --- Messages --- */
 .message {
   margin-top: 0.75rem;
