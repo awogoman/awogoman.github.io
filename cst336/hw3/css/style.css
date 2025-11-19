@@ -1,1 +1,141 @@
+/* Layout */
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background: linear-gradient(#f5f7fb, #dde3f5);
+  color: #222;
+}
 
+/* Header */
+header {
+  padding: 1.5rem 1rem;
+  text-align: center;
+  background-color: #1e3a8a;
+  color: #fff;
+}
+
+h1 {
+  margin: 0 0 0.5rem;
+  font-size: 1.8rem;
+}
+
+.description {
+  max-width: 700px;
+  margin: 0 auto;
+  font-size: 0.95rem;
+}
+
+/* Main content */
+main {
+  max-width: 700px;
+  margin: 1.5rem auto;
+  padding: 0 1rem 2rem;
+}
+
+/* Form styles */
+form {
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  margin-bottom: 1.5rem;
+}
+
+label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+input[type="text"] {
+  width: 100%;
+  max-width: 300px;
+  padding: 0.45rem 0.5rem;
+  font-size: 1rem;
+  border-radius: 4px;
+  border: 1px solid #9ca3af;
+  margin-right: 0.5rem;
+  box-sizing: border-box;
+}
+
+button {
+  margin-top: 0.75rem;
+  padding: 0.4rem 0.9rem;
+  font-size: 1rem;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  background-color: #1e3a8a;
+  color: white;
+  transition: transform 0.05s ease, box-shadow 0.1s ease;
+}
+
+button:hover {
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.18);
+  transform: translateY(-1px);
+}
+
+/* Errors / loading messages */
+.message {
+  margin-top: 0.75rem;
+  min-height: 1.2em;
+  font-size: 0.95rem;
+}
+
+/* Error messages */
+.message.error {
+  color: #b91c1c;
+}
+
+/* Success / info messages */
+.message.info {
+  color: #065f46;
+}
+
+/* Results */
+.card {
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
+  border-left: 8px solid #6b7280; /* default until gender is known */
+}
+
+/* Gender background colors */
+/* light blue male */
+.gender-m {
+  background-color: #dbeafe;
+  border-left-color: #2563eb;
+}
+
+/* light pink female */
+.gender-f {
+  background-color: #fef2f2;
+  border-left-color: #ec4899;
+}
+
+/* yellow unisex */
+.gender-u {
+  background-color: #fef9c3;
+  border-left-color: #eab308;
+}
+
+/* Utility rules */
+.note {
+  font-size: 0.8rem;
+  color: #4b5563;
+}
+
+.hidden {
+  display: none;
+}
+
+footer {
+  text-align: center;
+  font-size: 0.8rem;
+  padding: 0.75rem;
+  background-color: #e5e7eb;
+  color: #374151;
+}
