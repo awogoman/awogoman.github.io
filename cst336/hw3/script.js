@@ -40,7 +40,7 @@ function getGenderInfo(code) {
   return { text, cssClass };
 }
 
-/* Form submit handler: validate input, lookup API, display results */
+/* Form handler: validate input, lookup API, display results */
 form.addEventListener("submit", function (event) {
   event.preventDefault();
   // reset animation
@@ -143,10 +143,10 @@ form.addEventListener("submit", function (event) {
 const randomBtn = document.getElementById("randomBtn");
 
 randomBtn.addEventListener("click", function () {
-  // reset animation
+  // reset animation & hide current results
   nameCard.classList.remove("reveal");
-  showMessage("Generating a random name...", "info");
   resultsSection.classList.add("hidden");
+  showMessage("Generating a random name...", "info");
 
   const url = `https://www.behindthename.com/api/random.xml?key=${API_KEY}&number=1`;
 
@@ -162,28 +162,21 @@ randomBtn.addEventListener("click", function () {
       const xmlDoc = parser.parseFromString(xmlText, "application/xml");
 
       const nameNode = xmlDoc.querySelector("name");
-      const genderNode = xmlDoc.querySelector("gender");
-
       if (!nameNode) {
         showMessage("Could not generate a random name. Try again!", "error");
         return;
       }
 
-      const name = nameNode.textContent;
-      const genderCode = genderNode ? genderNode.textContent : "";
-      const genderInfo = getGenderInfo(genderCode);
+      const randomName = nameNode.textContent;
 
-      resultName.textContent = name;
-      resultGender.textContent = genderInfo.text;
-      resultUsages.textContent =
-        "Random name — usage info not included in this API.";
+      // Put the random name in the input so the user can see it
+      nameInput.value = randomName;
 
-      nameCard.classList.remove("gender-m", "gender-f", "gender-u");
-      nameCard.classList.add(genderInfo.cssClass);
+      // Now reuse the existing lookup flow to get gender + usages
+      showMessage("Random name generated. Looking up details...", "info");
 
-      resultsSection.classList.remove("hidden");
-      nameCard.classList.add("reveal");
-      showMessage("Random name generated!", "info");
+      // This triggers the same submit handler as if the user typed it
+      form.dispatchEvent(new Event("submit"));
     })
     .catch(function (error) {
       console.error(error);
