@@ -27,40 +27,42 @@
   </header>
 
   <main>
-    <!-- User input -->
-    <form id="nameForm">
-      <label for="nameInput">Enter a first name:</label>
-      <input
-        type="text"
-        id="nameInput"
-        name="name"
-        placeholder="e.g. Mary, Luca, Terry"
-        required
-      >
-      <button type="submit">Look up name</button>
+  <!-- User input -->
+  <form id="nameForm">
+    <label for="nameInput">Enter a first name:</label>
+    <input
+      type="text"
+      id="nameInput"
+      name="name"
+      placeholder="e.g. Mary, Luca, Terry"
+      required
+    >
+    <button type="submit">Look up name</button>
 
-      <!-- Validation / status messages -->
-      <p id="message" class="message" aria-live="polite"></p>
-    </form>
+    <!-- Validation / status messages -->
+    <p id="message" class="message" aria-live="polite"></p>
+  </form>
 
-    <!-- Random name button -->
-    <button id="randomBtn" type="button" class="secondary">Generate Random Name</button>
+  <!-- Random name button -->
+  <button id="randomBtn" type="button" class="secondary">
+    Generate Random Name
+  </button>
 
-    <!-- Results -->
-    <section id="results" class="hidden" aria-live="polite">
-      <div id="nameCard" class="card">
-        <h2 id="resultName"></h2>
-        <p><strong>Gender:</strong> <span id="resultGender"></span></p>
-        <p><strong>Usages:</strong> <span id="resultUsages"></span></p>
-        <p class="note">
-          Data from
-          <a href="https://www.behindthename.com/" target="_blank" rel="noopener">
-            BehindTheName.com
-          </a>
-        </p>
-      </div>
-    </section>
-  </main>
+  <!-- Results -->
+  <section id="results" class="hidden" aria-live="polite">
+    <div id="nameCard" class="card">
+      <h2 id="resultName"></h2>
+      <p><strong>Gender:</strong> <span id="resultGender"></span></p>
+      <p><strong>Usages:</strong> <span id="resultUsages"></span></p>
+      <p class="note">
+        Data from
+        <a href="https://www.behindthename.com/" target="_blank" rel="noopener">
+          BehindTheName.com
+        </a>
+      </p>
+    </div>
+  </section>
+</main>
 
   <footer>
     <p>Wogoman · HW 3 - Fetch and Web APIs · CST 336</p>
