@@ -120,6 +120,51 @@ function getGenderInfo(code) {
         }
       });
 
+      // Random name generator
+      const randomBtn = document.getElementById("randomBtn");
+      randomBtn.addEventListener("click", function () {
+        // Clear any previous animation
+        nameCard.classList.remove("reveal");
+        showMessage("Generating a random name...", "info");
+        resultsSection.classList.add("hidden");
+
+        const url = `https://www.behindthename.com/api/random.xml?key=${API_KEY}&number=1`;
+
+        fetch(url)
+          .then(response => response.text())
+          .then(xmlText => {
+            const parser = new DOMParser();
+            const xmlDoc = parser.parseFromString(xmlText, "application/xml");
+            const nameNode = xmlDoc.querySelector("name");
+            const genderNode = xmlDoc.querySelector("gender");
+
+            if (!nameNode) {
+              showMessage("Could not generate a random name. Try again!", "error");
+              return;
+            }
+
+            const name = nameNode.textContent;
+            const genderCode = genderNode ? genderNode.textContent : "";
+            const genderInfo = getGenderInfo(genderCode);
+
+            // UI
+            resultName.textContent = name;
+            resultGender.textContent = genderInfo.text;
+            resultUsages.textContent = "Random name — usage info not included in this API";
+
+            nameCard.classList.remove("gender-m", "gender-f", "gender-u");
+            nameCard.classList.add(genderInfo.cssClass);
+
+            resultsSection.classList.remove("hidden");
+            nameCard.classList.add("reveal");
+            showMessage("Random name generated!", "info");
+          })
+          .catch(err => {
+            console.error(err);
+            showMessage("There was an issue fetching a random name.", "error");
+          });
+      });
+      
       // Get gender & CSS class
       const genderInfo = getGenderInfo(genderCode);
 
