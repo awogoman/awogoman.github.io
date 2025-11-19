@@ -1,1 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>HW 3: Behind the Name Lookup</title>
 
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- JS -->
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <header>
+    <h1>Name Lookup with Behind the Name API</h1>
+    <p class="description">
+      This page uses the <a href="https://www.behindthename.com/api/" target="_blank" rel="noopener">
+      Behind the Name Web API</a> to look up information about a given first name.
+      When you enter a name, JavaScript calls the API with <code>fetch()</code>, and then displays the name's gender
+      and language usages. The background color will change to indicate the gender.
+    </p>
+  </header>
+
+  <main>
+    <!-- User input -->
+    <form id="nameForm">
+      <label for="nameInput">Enter a first name:</label>
+      <input
+        type="text"
+        id="nameInput"
+        name="name"
+        placeholder="e.g. John, Jane, Alexis"
+        required
+      >
+      <button type="submit">Look up name</button>
+
+      <!-- Validation / status messages -->
+      <p id="message" class="message" aria-live="polite"></p>
+    </form>
+
+    <!-- Results -->
+    <section id="results" class="hidden" aria-live="polite">
+      <div id="nameCard" class="card">
+        <h2 id="resultName"></h2>
+        <p><strong>Gender:</strong> <span id="resultGender"></span></p>
+        <p><strong>Usages:</strong> <span id="resultUsages"></span></p>
+        <p class="note">
+          Data from
+          <a href="https://www.behindthename.com/" target="_blank" rel="noopener">
+            BehindTheName.com
+          </a>
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Wogoman · HW 3 - Fetch and Web APIs · CST 336</p>
+  </footer>
+</body>
+</html>
