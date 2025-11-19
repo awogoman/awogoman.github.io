@@ -12,8 +12,17 @@ body {
 header {
   padding: 1.5rem 1rem;
   text-align: center;
-  background-color: #1e3a8a;
-  color: #fff;
+  background-color: #f2e9d8;
+  color: #333;
+}
+
+header a {
+  color: #8b4513;
+  text-decoration: underline;
+}
+
+header a:hover {
+  color: #a85c1d;
 }
 
 h1 {
