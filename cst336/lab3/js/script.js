@@ -223,3 +223,22 @@ function validateForm(e) {
   }
   // If valid, form submission
 }
+
+// Scroll animation
+const sections = document.querySelectorAll(".fade-section");
+
+const observer = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+        observer.unobserve(entry.target);
+      }
+    });
+  },
+  {
+    threshold: 0.2
+  }
+);
+
+sections.forEach((section) => observer.observe(section));
