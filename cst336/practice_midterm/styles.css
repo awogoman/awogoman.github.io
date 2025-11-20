@@ -198,6 +198,11 @@ header {
   font-style: italic;
 }
 
+/* Colors for rubric */
+.r-green { color: #3fe63f; }
+.r-red { color: #ff4c4c; }
+.r-black { color: black; }
+
 /* Rubric */
 .rubric {
   background: rgba(0, 0, 0, 0.4);
