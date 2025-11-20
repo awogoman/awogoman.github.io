@@ -1,1 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sign Up Page</title>
 
+  <!-- Bootstrap -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  >
+
+  <!-- Extra styles -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="bg-light">
+
+  <div class="container py-5">
+    <div class="row justify-content-center">
+      <div class="col-md-8 col-lg-6">
+        <div class="card shadow-sm">
+          <div class="card-header text-center bg-primary text-white">
+            <h1 class="h3 mb-0">Sign Up</h1>
+          </div>
+
+          <div class="card-body">
+            <!-- FORM -->
+            <form id="signupForm" action="welcome.html" method="GET">
+
+              <!-- Name -->
+              <div class="mb-3">
+                <label class="form-label" for="fName">First Name</label>
+                <input type="text" class="form-control" id="fName" name="fName">
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label" for="lName">Last Name</label>
+                <input type="text" class="form-control" id="lName" name="lName">
+              </div>
+
+              <!-- Gender -->
+              <div class="mb-3">
+                <label class="form-label d-block">Gender</label>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="gender" id="genderM" value="m">
+                  <label class="form-check-label" for="genderM">Male</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="gender" id="genderF" value="f">
+                  <label class="form-check-label" for="genderF">Female</label>
+                </div>
+              </div>
+
+              <!-- ZIP / City / Lat / Long -->
+              <div class="mb-3">
+                <label class="form-label" for="zip">Zip Code</label>
+                <input type="text" class="form-control" id="zip" name="zip">
+                <div id="zipError" class="form-text text-danger"></div>
+              </div>
+
+              <div class="row mb-3">
+                <div class="col-12 col-md-4">
+                  <strong>City:</strong> <span id="city"></span>
+                </div>
+                <div class="col-6 col-md-4">
+                  <strong>Latitude:</strong> <span id="latitude"></span>
+                </div>
+                <div class="col-6 col-md-4">
+                  <strong>Longitude:</strong> <span id="longitude"></span>
+                </div>
+              </div>
+
+              <!-- State / County -->
+              <div class="mb-3">
+                <label class="form-label" for="state">State</label>
+                <select id="state" name="state" class="form-select">
+                  <!-- From API -->
+                  <option value="">Loading states...</option>
+                </select>
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label" for="county">Select a County</label>
+                <select id="county" name="county" class="form-select">
+                  <option value="">Select County</option>
+                </select>
+              </div>
+
+              <!-- Username -->
+              <div class="mb-3">
+                <label class="form-label" for="username">Desired Username</label>
+                <input type="text" id="username" name="username" class="form-control">
+                <div id="usernameStatus" class="form-text"></div>
+              </div>
+
+              <!-- Password -->
+              <div class="mb-3">
+                <label class="form-label" for="password">Password</label>
+                <input type="password" id="password" name="password" class="form-control">
+                <div id="suggestedPwd" class="form-text"></div>
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label" for="passwordAgain">Type Password Again</label>
+                <input type="password" id="passwordAgain" name="passwordAgain" class="form-control">
+                <div id="passwordError" class="form-text text-danger"></div>
+              </div>
+
+              <!-- Submit -->
+              <div class="d-grid">
+                <button type="submit" class="btn btn-primary btn-lg">
+                  Sign Up!
+                </button>
+              </div>
+
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JS -->
+  <script src="js/script.js"></script>
+</body>
+</html>
