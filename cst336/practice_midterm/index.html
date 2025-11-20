@@ -1,1 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Famous Quotes – Midterm Practice</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="overlay">
+    <header>
+      <h1 id="quoteText">Loading quote…</h1>
+      <h2 id="quoteAuthor"></h2>
+    </header>
 
+    <!-- Language / flag / translation -->
+    <section class="language-section">
+      <img id="flagImg" src="" alt="Language flag" class="flag hidden" />
+
+      <div id="languageChoices" class="languages">
+        <!-- radio buttons in random order -->
+      </div>
+
+      <button id="btnTranslate" class="btn primary">Translate!</button>
+    </section>
+
+    <!-- Author -->
+    <section class="author-section">
+      <button id="btnAuthorInfo" class="btn secondary">
+        Display Author Info
+      </button>
+
+      <div id="authorInfo" class="author-info hidden">
+        <div class="author-photo">
+          <img id="authorImg" src="" alt="Author picture" />
+        </div>
+        <div class="author-bio">
+          <h3 id="authorName"></h3>
+          <p id="authorBio"></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Quotes -->
+    <section class="quotes-section">
+      <div class="controls">
+        <label for="numQuotes">Number of Quotes: </label>
+        <input
+          type="text"
+          id="numQuotes"
+          placeholder="1-5"
+          size="3"
+        />
+        <button id="btnGetQuotes" class="btn success">
+          Get Quotes
+        </button>
+      </div>
+      <p id="errorMsg" class="error"></p>
+
+      <div id="quotesList"></div>
+    </section>
+
+    <!-- Rubric -->
+    <section class="rubric">
+      <h3>Practice Rubric (Midterm Style)</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Task Description</th>
+            <th>Points</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>A random quote and corresponding author is displayed when loading the page</td>
+            <td>20</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>The author's bio and picture is displayed when clicking on the "Display Author Info" button</td>
+            <td>15</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>The author's bio and picture are displayed in a two-column layout using a flex box</td>
+            <td>10</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>The language choices (radio buttons) are displayed in a random order every time the page is reloaded</td>
+            <td>20</td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>The corresponding language flag is displayed when clicking on the "Translate" button</td>
+            <td>20</td>
+          </tr>
+          <tr>
+            <td>6</td>
+            <td>The random quote displayed is translated into the language selected when clicking on the "Translate" button</td>
+            <td>20</td>
+          </tr>
+          <tr>
+            <td>7</td>
+            <td>An error message in red is displayed if the value entered in the "Number of Quotes" text box is not between 1 and 5 or if it's left blank</td>
+            <td>20</td>
+          </tr>
+          <tr>
+            <td>8</td>
+            <td>The specified number of quotes and corresponding authors (1 to 5) are displayed when clicking on the "Get Quotes" button</td>
+            <td>20</td>
+          </tr>
+          <tr>
+            <td>9</td>
+            <td>A random background image is displayed every time the page is reloaded using the Web API provided</td>
+            <td>20</td>
+          </tr>
+          <tr>
+            <td>10</td>
+            <td>This rubric is properly included AND UPDATED</td>
+            <td>3</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
