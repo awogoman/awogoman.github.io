@@ -156,3 +156,107 @@ label.form-label:hover::after {
   font-size: 44px;
   color: var(--crimson-bright);
 }
+
+/* Border */
+.goth-card {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Gradient */
+.crimson-border-animated::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  background: conic-gradient(
+    from 0deg,
+    rgba(122, 15, 29, 0.1),
+    rgba(166, 22, 41, 0.7),
+    rgba(122, 15, 29, 0.1),
+    rgba(0, 0, 0, 0.9)
+  );
+  z-index: -1;
+  animation: spinBorder 12s linear infinite;
+}
+
+/* Inner mask */
+.crimson-border-animated::after {
+  content: "";
+  position: absolute;
+  inset: 2px;
+  background: var(--bg-panel);
+  border-radius: 10px;
+  z-index: -1;
+}
+
+@keyframes spinBorder {
+  0%   { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Dividers */
+.goth-divider {
+  position: relative;
+  margin: 24px 0;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    var(--crimson),
+    transparent
+  );
+}
+
+.goth-divider::before,
+.goth-divider::after {
+  content: "";
+  position: absolute;
+  top: -4px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 1px solid var(--crimson-bright);
+  box-shadow: 0 0 7px rgba(166, 22, 41, 0.8);
+}
+
+.goth-divider::before {
+  left: 10%;
+}
+
+.goth-divider::after {
+  right: 10%;
+}
+
+/* Final divider */
+.goth-divider-end::before,
+.goth-divider-end::after {
+  width: 16px;
+  height: 16px;
+}
+
+/* Steps */
+.step-title {
+  font-family: "IM Fell English SC", serif;
+  font-size: 20px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--crimson-bright);
+  margin-bottom: 12px;
+}
+
+/* Scroll Animation */
+.fade-section {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Information under zip */
+.small-info-row {
+  font-size: 0.9rem;
+}
