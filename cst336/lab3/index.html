@@ -10,117 +10,150 @@
     rel="stylesheet"
   >
 
-  <!-- Extra styles -->
+  <!-- CSS -->
   <link rel="stylesheet" href="css/styles.css">
 </head>
-<body class="bg-light">
+
+<body>
 
   <div class="container py-5">
     <div class="row justify-content-center">
       <div class="col-md-8 col-lg-6">
-        <div class="card shadow-sm">
-          <div class="card-header text-center bg-primary text-white">
-            <h1 class="h3 mb-0">Sign Up</h1>
+
+        <!-- Card -->
+        <div class="card goth-card crimson-border-animated">
+
+          <div class="card-header">
+            <h1 class="mb-0">Sign Up</h1>
           </div>
 
           <div class="card-body">
-            <!-- FORM -->
+
+            <!-- Form -->
             <form id="signupForm" action="welcome.html" method="GET">
 
-              <!-- Name -->
-              <div class="mb-3">
-                <label class="form-label" for="fName">First Name</label>
-                <input type="text" class="form-control" id="fName" name="fName">
-              </div>
+              <!-- Name / Gender -->
+              <section class="fade-section">
+                <h2 class="step-title">Step 1 • Basic Info</h2>
 
-              <div class="mb-3">
-                <label class="form-label" for="lName">Last Name</label>
-                <input type="text" class="form-control" id="lName" name="lName">
-              </div>
-
-              <!-- Gender -->
-              <div class="mb-3">
-                <label class="form-label d-block">Gender</label>
-                <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="gender" id="genderM" value="m">
-                  <label class="form-check-label" for="genderM">Male</label>
+                <div class="mb-3">
+                  <label class="form-label" for="fName">First Name</label>
+                  <input type="text" class="form-control" id="fName" name="fName">
                 </div>
-                <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="gender" id="genderF" value="f">
-                  <label class="form-check-label" for="genderF">Female</label>
+
+                <div class="mb-3">
+                  <label class="form-label" for="lName">Last Name</label>
+                  <input type="text" class="form-control" id="lName" name="lName">
                 </div>
-              </div>
 
-              <!-- ZIP / City / Lat / Long -->
-              <div class="mb-3">
-                <label class="form-label" for="zip">Zip Code</label>
-                <input type="text" class="form-control" id="zip" name="zip">
-                <div id="zipError" class="form-text text-danger"></div>
-              </div>
+                <div class="mb-3">
+                  <label class="form-label d-block">Gender</label>
 
-              <div class="row mb-3">
-                <div class="col-12 col-md-4">
-                  <strong>City:</strong> <span id="city"></span>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="gender" id="genderM" value="m">
+                    <label class="form-check-label" for="genderM">Male</label>
+                  </div>
+
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="gender" id="genderF" value="f">
+                    <label class="form-check-label" for="genderF">Female</label>
+                  </div>
                 </div>
-                <div class="col-6 col-md-4">
-                  <strong>Latitude:</strong> <span id="latitude"></span>
+              </section>
+
+              <div class="goth-divider"></div>
+
+              <!-- Location-->
+              <section class="fade-section">
+                <h2 class="step-title">Step 2 • Location</h2>
+
+                <div class="mb-3">
+                  <label class="form-label" for="zip">Zip Code</label>
+                  <input type="text" class="form-control" id="zip" name="zip">
+                  <div id="zipError" class="form-text text-danger"></div>
                 </div>
-                <div class="col-6 col-md-4">
-                  <strong>Longitude:</strong> <span id="longitude"></span>
+
+                <div class="row mb-3 small-info-row">
+                  <div class="col-12 col-md-4">
+                    <strong>City:</strong> <span id="city"></span>
+                  </div>
+
+                  <div class="col-6 col-md-4">
+                    <strong>Latitude:</strong> <span id="latitude"></span>
+                  </div>
+
+                  <div class="col-6 col-md-4">
+                    <strong>Longitude:</strong> <span id="longitude"></span>
+                  </div>
                 </div>
-              </div>
 
-              <!-- State / County -->
-              <div class="mb-3">
-                <label class="form-label" for="state">State</label>
-                <select id="state" name="state" class="form-select">
-                  <!-- From API -->
-                  <option value="">Loading states...</option>
-                </select>
-              </div>
+                <div class="mb-3">
+                  <label class="form-label" for="state">State</label>
+                  <select id="state" name="state" class="form-select">
+                    <option value="">Loading states...</option>
+                  </select>
+                </div>
 
-              <div class="mb-3">
-                <label class="form-label" for="county">Select a County</label>
-                <select id="county" name="county" class="form-select">
-                  <option value="">Select County</option>
-                </select>
-              </div>
+                <div class="mb-3">
+                  <label class="form-label" for="county">Select a County</label>
+                  <select id="county" name="county" class="form-select">
+                    <option value="">Select County</option>
+                  </select>
+                </div>
+              </section>
 
-              <!-- Username -->
-              <div class="mb-3">
-                <label class="form-label" for="username">Desired Username</label>
-                <input type="text" id="username" name="username" class="form-control">
-                <div id="usernameStatus" class="form-text"></div>
-              </div>
+              <div class="goth-divider"></div>
 
-              <!-- Password -->
-              <div class="mb-3">
-                <label class="form-label" for="password">Password</label>
-                <input type="password" id="password" name="password" class="form-control">
-                <div id="suggestedPwd" class="form-text"></div>
-              </div>
+              <!-- Account -->
+              <section class="fade-section">
+                <h2 class="step-title">Step 3 • Account</h2>
 
-              <div class="mb-3">
-                <label class="form-label" for="passwordAgain">Type Password Again</label>
-                <input type="password" id="passwordAgain" name="passwordAgain" class="form-control">
-                <div id="passwordError" class="form-text text-danger"></div>
-              </div>
+                <div class="mb-3">
+                  <label class="form-label" for="username">Desired Username</label>
+                  <input type="text" id="username" name="username" class="form-control">
+                  <div id="usernameStatus" class="form-text"></div>
+                </div>
+              </section>
+
+              <div class="goth-divider"></div>
+
+              <!-- Security -->
+              <section class="fade-section">
+                <h2 class="step-title">Step 4 • Security</h2>
+
+                <div class="mb-3">
+                  <label class="form-label" for="password">Password</label>
+                  <input type="password" id="password" name="password" class="form-control">
+                  <div id="suggestedPwd" class="form-text"></div>
+                </div>
+
+                <div class="mb-3">
+                  <label class="form-label" for="passwordAgain">Type Password Again</label>
+                  <input type="password" id="passwordAgain" name="passwordAgain" class="form-control">
+                  <div id="passwordError" class="form-text text-danger"></div>
+                </div>
+              </section>
+
+              <div class="goth-divider goth-divider-end"></div>
 
               <!-- Submit -->
-              <div class="d-grid">
-                <button type="submit" class="btn btn-primary btn-lg">
-                  Sign Up!
-                </button>
-              </div>
-
+              <section class="fade-section">
+                <div class="d-grid mt-4">
+                  <button type="submit" class="btn btn-primary btn-lg">
+                    Sign Up!
+                  </button>
+                </div>
+              </section>
             </form>
-          </div>
-        </div>
+            
+          </div> 
+        </div> 
       </div>
     </div>
   </div>
 
   <!-- JS -->
   <script src="js/script.js"></script>
+
 </body>
 </html>
