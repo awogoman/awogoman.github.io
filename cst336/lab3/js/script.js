@@ -191,17 +191,21 @@ async function checkUsername(showMessages = true) {
 
 // Suggested password
 async function showSuggestedPassword() {
-  const url =
-    "https://csumb.space/api/suggestedPassword.php?length=8";
+  const url = "https://csumb.space/api/suggestedPassword.php?length=8";
   const suggestedSpan = document.querySelector("#suggestedPwd");
 
   try {
     const response = await fetch(url);
     const data = await response.json();
-    suggestedSpan.textContent = `Suggested password: ${data.suggestedPassword}`;
+    let pwd = data.password || data.suggestedPassword;
+    if (!pwd) {
+      pwd = Math.random().toString(36).slice(-8) + "!";
+    }
+    suggestedSpan.textContent = `Suggested password: ${pwd}`;
   } catch (err) {
     console.error(err);
-    suggestedSpan.textContent = "Could not get suggested password.";
+    const backup = Math.random().toString(36).slice(-8) + "!";
+    suggestedSpan.textContent = `Suggested password: ${backup}`;
   }
 }
 
