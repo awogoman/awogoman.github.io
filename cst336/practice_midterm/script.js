@@ -1,16 +1,16 @@
-// API
+// Constants
+// Random quote
 const RANDOM_QUOTE_URL =
   "https://csumb.space/api/famousQuotes/getRandomQuote.php";
-
+// Translation API
 const TRANSLATE_URL_BASE =
   "https://csumb.space/api/famousQuotes/translateQuote.php";
-
+// N random quotes
 const MULTI_QUOTES_URL_BASE =
   "https://csumb.space/api/famousQuotes/getQuotes.php";
-
-// Pixabay
-const PIXABAY_KEY = "5589438-47a0bca77b8f23fc2e8c5bf3e";
-const PIXABAY_URL = `https://pixabay.com/api/?key=${PIXABAY_KEY}&per_page=50&orientation=horizontal&q=flowers`;
+// Background image
+const PIXABAY_URL =
+  "https://pixabay.com/api/?key=5589438-47a0bca778bf23fc2e8c5bf3e&per_page=50&orientation=horizontal&q=flowers";
 
 // Globals
 let currentQuoteId = null;
@@ -19,7 +19,7 @@ let currentAuthorName = "";
 let currentAuthorBio = "";
 let currentAuthorImage = "";
 
-// Languages: label, API code, flag
+// Languages / 2-letter codes
 const LANGUAGES = [
   { code: "EN", label: "English", flag: "flag_en.png" },
   { code: "ES", label: "Esperanto", flag: "flag_esperanto.png" },
@@ -27,7 +27,8 @@ const LANGUAGES = [
   { code: "FR", label: "French", flag: "flag_france.png" }
 ];
 
-// Helper method for randomizing radio buttons
+// Helpers
+// Random radio buttons
 function shuffle(arr) {
   for (let i = arr.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
@@ -35,35 +36,59 @@ function shuffle(arr) {
   }
 }
 
-// Random quote
+// Get random quote
+function firstQuoteObject(data) {
+  if (Array.isArray(data) && data.length > 0) return data[0];
+  if (data && Array.isArray(data.quotes) && data.quotes.length > 0) {
+    return data.quotes[0];
+  }
+  return data;
+}
+
+// Get array of quotes
+function quoteArray(data) {
+  if (Array.isArray(data)) return data;
+  if (Array.isArray(data.quotes)) return data.quotes;
+  return [];
+}
+
+// Random quote on load
 async function loadRandomQuote() {
   try {
     const response = await fetch(RANDOM_QUOTE_URL);
     const data = await response.json();
-    console.log("Random quote data:", data);
+    console.log("Random quote API:", data);
 
-    currentQuoteText = data.quote;
-    currentAuthorName = data.author;
-    currentQuoteId = data.quoteId;
-    currentAuthorBio = data.bio;
-    currentAuthorImage = data.pic;
+    const q = firstQuoteObject(data);
 
-    document.getElementById("quoteText").textContent = currentQuoteText;
-    document.getElementById("quoteAuthor").textContent = "-" + currentAuthorName;
+    currentQuoteId = q.quoteId;
+    currentQuoteText = q.quote;
+    currentAuthorName = q.author;
+    currentAuthorBio = q.bio;
+    currentAuthorImage = q.pic;
 
-    // Reset author info
+    document.getElementById("quoteText").textContent =
+      currentQuoteText || "No quote text found.";
+    document.getElementById("quoteAuthor").textContent =
+      currentAuthorName ? "-" + currentAuthorName : "";
+
+    // Hide author info
     document.getElementById("authorInfo").classList.add("hidden");
+
   } catch (err) {
-    console.error("Error loading random quote", err);
+    console.error("Error loading random quote:", err);
     document.getElementById("quoteText").textContent =
       "Error loading quote. Check the console.";
   }
 }
 
-// Show author info
+// Author info button
 function showAuthorInfo() {
   const infoDiv = document.getElementById("authorInfo");
-  document.getElementById("authorName").textContent = currentAuthorName;
+
+  document.getElementById("authorName").textContent =
+    currentAuthorName || "Unknown author";
+
   document.getElementById("authorBio").textContent =
     currentAuthorBio || "No bio available from the API.";
 
@@ -71,22 +96,25 @@ function showAuthorInfo() {
   if (currentAuthorImage) {
     img.src = currentAuthorImage;
   } else {
-    // Default image if none given, debugging
+    // blank placeholder photo
     img.src = "img/author_placeholder.jpg";
   }
+
   infoDiv.classList.remove("hidden");
 }
 
-// Radio buttons in random order 
+
+// Random radio buttons
 function renderLanguageRadios() {
   const container = document.getElementById("languageChoices");
   container.innerHTML = "";
 
-  const copy = LANGUAGES.slice();
-  shuffle(copy);
+  const shuffled = LANGUAGES.slice();
+  shuffle(shuffled);
 
-  copy.forEach((lang, index) => {
+  shuffled.forEach((lang, index) => {
     const id = `lang-${lang.code}`;
+
     const label = document.createElement("label");
     label.htmlFor = id;
 
@@ -96,9 +124,8 @@ function renderLanguageRadios() {
     radio.value = lang.code;
     radio.id = id;
 
-    if (index === 0) {
-      radio.checked = true;
-    }
+    // Default
+    if (index === 0) radio.checked = true;
 
     label.appendChild(radio);
     label.appendChild(document.createTextNode(" " + lang.label));
@@ -107,7 +134,6 @@ function renderLanguageRadios() {
   });
 }
 
-// Helper to get selected language
 function getSelectedLanguage() {
   const radios = document.querySelectorAll('input[name="lang"]');
   for (const r of radios) {
@@ -118,7 +144,8 @@ function getSelectedLanguage() {
   return null;
 }
 
-// Translate quote / show flag
+
+// Translate button / flag
 async function translateQuote() {
   if (!currentQuoteId) {
     alert("Quote not loaded yet.");
@@ -131,34 +158,35 @@ async function translateQuote() {
     return;
   }
 
-  // Show flag
+  // Flag
   const flagImg = document.getElementById("flagImg");
   flagImg.classList.remove("hidden");
-  flagImg.src = "img/" + lang.flag;
+  flagImg.src = "img/" + lang.flag; // you can create these images
 
-  const url = `${TRANSLATE_URL_BASE}?lang=${lang.code}&quoteId=${currentQuoteId}`;
+  // Call API
+  const url =
+    `${TRANSLATE_URL_BASE}?lang=${lang.code}&quoteId=${currentQuoteId}`;
 
   try {
     const response = await fetch(url);
     const data = await response.json();
-    console.log("Translation data:", data);
+    console.log("Translate API:", data);
 
-    const translated =
-      data.translatedQuote || data.quote || data.translation || "";
+    const translated = data.quote || data.translatedQuote || data.text || "";
 
     if (translated) {
       currentQuoteText = translated;
       document.getElementById("quoteText").textContent = translated;
     } else {
-      alert("Could not find translated text in the response. Check console.");
+      alert("Could not find translated quote text in the response.");
     }
   } catch (err) {
-    console.error("Error translating quote", err);
-    alert("Error translating quote. See console.");
+    console.error("Error translating quote:", err);
+    alert("Error translating quote. Check the console.");
   }
 }
 
-// Display chosen number of quotes
+// Get 1-5 quotes
 async function getQuotes() {
   const numInput = document.getElementById("numQuotes");
   const errorMsg = document.getElementById("errorMsg");
@@ -169,42 +197,50 @@ async function getQuotes() {
 
   // 1-5 only
   if (!value || isNaN(n) || n < 1 || n > 5) {
-    errorMsg.textContent =
-      "Please enter a number between 1 and 5.";
+    errorMsg.textContent = "Please enter a number between 1 and 5.";
     listDiv.innerHTML = "";
     return;
   }
 
   errorMsg.textContent = "";
 
+  // Call API
   const url = `${MULTI_QUOTES_URL_BASE}?n=${n}`;
 
   try {
     const response = await fetch(url);
     const data = await response.json();
-    console.log("Multiple quotes data:", data);
+    console.log("GetQuotes API:", data);
 
+    const arr = quoteArray(data);
     listDiv.innerHTML = "";
-    data.forEach((item) => {
+
+    arr.forEach((qObj) => {
+      const quoteText = qObj.quote || qObj.text || "";
+      const authorName = qObj.author || qObj.authorName || "Unknown";
+
       const div = document.createElement("div");
       div.className = "quote-item";
-      const q = item.quote || item.text || "";
-      const a = item.author || "Unknown";
-      div.innerHTML = `"${q}" <span class="author">– ${a}</span>`;
+      div.innerHTML =
+        `"${quoteText}" <span class="author">– ${authorName}</span>`;
       listDiv.appendChild(div);
     });
+
+    if (arr.length === 0) {
+      listDiv.textContent = "No quotes returned from the API.";
+    }
   } catch (err) {
-    console.error("Error getting multiple quotes", err);
-    errorMsg.textContent = "Error retrieving quotes. Check console.";
+    console.error("Error getting quotes:", err);
+    errorMsg.textContent = "Error retrieving quotes. Check the console.";
   }
 }
 
-// Random background image from Pixabay
+// Random background
 async function setRandomBackground() {
   try {
     const response = await fetch(PIXABAY_URL);
     const data = await response.json();
-    console.log("Pixabay data:", data);
+    console.log("Pixabay API:", data);
 
     if (data.hits && data.hits.length > 0) {
       const idx = Math.floor(Math.random() * data.hits.length);
@@ -214,11 +250,11 @@ async function setRandomBackground() {
       document.body.style.backgroundImage = `url(${imgUrl})`;
     }
   } catch (err) {
-    console.error("Error loading Pixabay background", err);
+    console.error("Error setting background image:", err);
   }
 }
 
-// Event listeners
+// Setup
 document.addEventListener("DOMContentLoaded", () => {
   renderLanguageRadios();
   loadRandomQuote();
