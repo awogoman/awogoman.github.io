@@ -1,5 +1,30 @@
 /* Layout */
 
+/* Navigation */
+.top-nav {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.nav-link {
+  color: #ffd;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.35);
+}
+
+.nav-link:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.nav-link.active {
+  background: rgba(255, 255, 255, 0.8);
+  color: #123;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -22,7 +47,6 @@ body {
 }
 
 /* Header */
-
 header {
   text-align: center;
   margin-bottom: 2rem;
@@ -40,7 +64,6 @@ header {
 }
 
 /* Buttons */
-
 .btn {
   padding: 0.5rem 1.3rem;
   border-radius: 999px;
@@ -70,7 +93,6 @@ header {
 }
 
 /* Languages */
-
 .language-section {
   display: flex;
   flex-direction: column;
@@ -105,7 +127,6 @@ header {
 }
 
 /* Author */
-
 .author-section {
   text-align: center;
   margin-bottom: 2rem;
@@ -133,7 +154,6 @@ header {
 }
 
 /* Quotes */
-
 .quotes-section {
   background: rgba(0, 0, 0, 0.35);
   padding: 1rem;
@@ -179,7 +199,6 @@ header {
 }
 
 /* Rubric */
-
 .rubric {
   background: rgba(0, 0, 0, 0.4);
   padding: 1rem;
@@ -208,7 +227,6 @@ header {
 }
 
 /* Responsive */
-
 @media (max-width: 700px) {
   #quoteText {
     font-size: 1.6rem;
