@@ -1,1 +1,158 @@
+/* Fonts */
+@import url('https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&family=Crimson+Pro:wght@300;400;600&display=swap');
 
+/* Colors */
+:root {
+  --bg: #0a0a0c;
+  --bg-panel: #111116;
+  --bg-panel-dark: #0e0e10;
+
+  --text-main: #e2d9d0;
+  --text-muted: #b7ada4;
+
+  --crimson: #7a0f1d;
+  --crimson-bright: #a61629;
+  --crimson-dark: #2a0f12;
+
+  --border: #2a0f12;
+}
+
+/* Global*/
+body {
+  background: linear-gradient(to bottom, var(--bg), #000);
+  color: var(--text-main) !important;
+  font-family: "Crimson Pro", serif;
+  padding-bottom: 60px;
+}
+
+/* Remove Bootstrap background for style formatting */
+.bg-light, .card, .container, .form-control, .form-select {
+  background-color: transparent !important;
+  color: var(--text-main) !important;
+}
+
+/* Card */
+.card {
+  background: var(--bg-panel);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  transition: transform .25s ease, box-shadow .25s ease;
+  box-shadow: 0 0 5px rgba(122, 15, 29, 0.25);
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 0 15px rgba(166, 22, 41, 0.25);
+}
+
+/* Header */
+.card-header {
+  background: var(--crimson-dark);
+  border-bottom: 1px solid var(--crimson);
+  text-align: center;
+}
+
+.card-header h1 {
+  font-family: "IM Fell English SC", serif;
+  font-size: 38px;
+  letter-spacing: 1px;
+  color: var(--crimson-bright);
+  text-shadow: 0 0 6px rgba(166, 22, 41, 0.7);
+}
+
+/* Labels */
+label.form-label {
+  font-weight: 600;
+  color: var(--crimson-bright);
+  position: relative;
+  padding-bottom: 4px;
+}
+
+label.form-label::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0%;
+  height: 2px;
+  background: var(--crimson-bright);
+  transition: width .3s ease;
+}
+
+label.form-label:hover::after {
+  width: 100%;
+}
+
+/* Inputs */
+.form-control, .form-select {
+  background: var(--bg-panel-dark) !important;
+  border: 1px solid var(--border) !important;
+  color: var(--text-main) !important;
+}
+
+.form-control:focus, .form-select:focus {
+  border-color: var(--crimson-bright) !important;
+  box-shadow: 0 0 8px rgba(166, 22, 41, 0.4) !important;
+}
+
+/* Radio buttons */
+.form-check-input:checked {
+  background-color: var(--crimson-bright) !important;
+  border-color: var(--crimson-bright) !important;
+}
+
+/* Button */
+.btn-primary {
+  background: var(--crimson-bright) !important;
+  border: 1px solid var(--crimson-dark) !important;
+  color: white !important;
+  font-weight: 600;
+  transition: all .3s ease;
+  box-shadow: 0 0 5px rgba(166, 22, 41, 0.3);
+}
+
+.btn-primary:hover {
+  background: var(--crimson) !important;
+  box-shadow: 0 0 12px rgba(166, 22, 41, 0.6);
+  transform: translateY(-2px);
+}
+
+/* Small text */
+.form-text {
+  color: var(--text-muted) !important;
+}
+
+.text-danger {
+  color: #ff5f6b !important;
+}
+
+.text-success {
+  color: #86ffb7 !important;
+}
+
+/* City / lat / long */
+#city, #latitude, #longitude {
+  font-weight: 600;
+  color: var(--crimson-bright);
+}
+
+/* Spacing */
+.container {
+  margin-top: 40px;
+}
+
+/* Welcome page */
+.welcome-box {
+  background: var(--bg-panel);
+  padding: 40px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 0 12px rgba(122, 15, 29, 0.4);
+}
+
+.welcome-box h1 {
+  font-family: "IM Fell English SC";
+  font-size: 44px;
+  color: var(--crimson-bright);
+}
