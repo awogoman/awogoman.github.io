@@ -43,6 +43,12 @@ function showAuthorInfo() {
 
 // Languages
 const LANGUAGES = ["EN", "ES", "SP", "FR"];
+const FLAG_FILES = {
+  EN: "flag_en.png",
+  ES: "flag_esperanto.png",
+  SP: "flag_spanish.png",
+  FR: "flag_france.png"
+};
 
 function shuffle(arr) {
   for (let i = arr.length - 1; i > 0; i--) {
@@ -76,22 +82,42 @@ function renderLanguageRadios() {
 
 // Translate
 async function translateQuote() {
-  const selected = document.querySelector("input[name='lang']:checked").value;
+  if (!currentQuoteId) {
+    alert("Quote not loaded yet.");
+    return;
+  }
 
-  // Flags
-  document.getElementById("flagImg").classList.remove("hidden");
-  document.getElementById("flagImg").src = `img/flag_${selected.toLowerCase()}.png`;
+  const selectedRadio = document.querySelector("input[name='lang']:checked");
+  if (!selectedRadio) {
+    alert("Please select a language.");
+    return;
+  }
 
+  const selected = selectedRadio.value;
+
+  const flagImg = document.getElementById("flagImg");
+  flagImg.classList.remove("hidden");
+  const flagFile = FLAG_FILES[selected] || "flag_en.png";
+  flagImg.src = "img/" + flagFile;
+
+  // Call API
   const url = `https://csumb.space/api/famousQuotes/translateQuote.php?lang=${selected}&quoteId=${currentQuoteId}`;
 
   try {
     const response = await fetch(url);
     const data = await response.json();
+    console.log("Translate API:", data);
 
-    document.getElementById("quoteText").textContent = data.quoteText;
+    const translated = data.quoteText || data.quote || data.translation || "";
 
+    if (translated) {
+      document.getElementById("quoteText").textContent = translated;
+    } else {
+      alert("Could not find translated quote text in the response.");
+    }
   } catch (err) {
     console.error("Error translating quote", err);
+    alert("Error translating quote. Check the console.");
   }
 }
 
