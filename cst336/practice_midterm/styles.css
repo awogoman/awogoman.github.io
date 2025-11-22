@@ -248,4 +248,9 @@ header {
   .author-bio {
     text-align: center;
   }
+
+  /* Debugging for author image not loading */
+  .hidden {
+  display: none !important;
+}
 }
