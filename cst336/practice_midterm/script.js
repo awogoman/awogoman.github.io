@@ -95,12 +95,13 @@ async function translateQuote() {
 
   const selected = selectedRadio.value;
 
-  // Show flag image
+  // Show flag images
   const flagImg = document.getElementById("flagImg");
   flagImg.classList.remove("hidden");
-  flagImg.src = "img/" + FLAG_FILES[selected];
+  const flagFile = FLAG_FILES[selected] || "flag_en.png";
+  flagImg.src = "img/" + flagFile;
 
-  // API
+  // Translation API
   const url = `https://csumb.space/api/famousQuotes/translateQuote.php?lang=${selected}&quoteId=${currentQuoteId}`;
 
   try {
@@ -108,16 +109,16 @@ async function translateQuote() {
     const data = await response.json();
     console.log("Translate API:", data);
 
-    if (data.quoteText) {
-      document.getElementById("quoteText").textContent = data.quoteText;
-    } else {
-      document.getElementById("quoteText").textContent =
-        "Translation not found.";
-    }
+    const translated = data.quoteText || data.quote || data.translation || "";
 
+    if (translated) {
+      document.getElementById("quoteText").textContent = translated;
+    } else {
+      alert("Could not find translated quote text in the response.");
+    }
   } catch (err) {
-    console.error("Translate error", err);
-    alert("Error translating quote.");
+    console.error("Error translating quote", err);
+    alert("Error translating quote. Check the console.");
   }
 }
 
