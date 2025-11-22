@@ -1,1 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Midterm App</title>
+  <!-- CSS -->
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="overlay">
+    <!-- Nav menu -->
+    <nav class="top-nav">
+      <!-- Link to rubric page -->
+      <a href="index.html" class="nav-link active">Home</a>
+      <a href="rubric.html" class="nav-link">Rubric</a>
+    </nav>
 
+    <!-- Header -->
+    <header>
+      <!-- Main header portion -->
+      <h1 id="mainText">Loading...</h1>
+      <h2 id="mainSubtext"></h2>
+    </header>
+
+    <!-- Language -->
+    <section class="language-section">
+      <!-- Hide in JS -->
+      <img id="flagImg" src="" alt="Language flag" class="flag" />
+
+      <!-- Random order radio buttons -->
+      <div id="languageChoices" class="languages">
+        <!-- Populate w JS -->
+      </div>
+
+      <button id="btnTranslate" class="btn primary">
+        Translate
+      </button>
+    </section>
+
+    <!-- Extra info (ex. Author info) -->
+    <section class="info-section">
+      <button id="btnShowInfo" class="btn secondary">
+        Display Extra Info
+      </button>
+
+      <!-- Hide w JS (style.display = 'none') -->
+      <div id="extraInfo" class="info-box">
+        <div class="info-photo">
+          <img id="infoImg" src="" alt="Extra picture" />
+        </div>
+        <div class="info-text">
+          <h3 id="infoTitle"></h3>
+          <p id="infoBody"></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- List / Validation -->
+    <!-- Text box (1–5) -->
+    <section class="list-section">
+      <div class="controls">
+        <label for="numItems">Number of items: </label>
+        <input
+          type="text"
+          id="numItems"
+          placeholder="1-5"
+          size="3"
+        />
+        <button id="btnGetItems" class="btn success">
+          Get Items
+        </button>
+      </div>
+
+      <!-- Error message -->
+      <p id="errorMsg" class="error"></p>
+
+      <!-- List of items from API -->
+      <div id="itemsList"></div>
+    </section>
+  </div>
+
+  <!-- JS -->
+  <script src="script.js"></script>
+</body>
+</html>
