@@ -38,7 +38,8 @@ function showAuthorInfo() {
   const img = document.getElementById("authorImg");
   img.src = currentAuthorPic;
 
-  document.getElementById("authorInfo").classList.remove("hidden");
+  const infoDiv = document.getElementById("authorInfo");
+  infoDiv.style.display = "flex";
 }
 
 // Languages
@@ -97,9 +98,8 @@ async function translateQuote() {
 
   // Show flag images
   const flagImg = document.getElementById("flagImg");
-  flagImg.classList.remove("hidden");
-  const flagFile = FLAG_FILES[selected] || "flag_en.png";
-  flagImg.src = "img/" + flagFile;
+  flagImg.style.display = "block";
+  flagImg.src = "img/" + FLAG_FILES[selected];
 
   // Translation API
   const url = `https://csumb.space/api/famousQuotes/translateQuote.php?lang=${selected}&quoteId=${currentQuoteId}`;
@@ -175,6 +175,9 @@ async function setRandomBackground() {
 
 // Setup
 document.addEventListener("DOMContentLoaded", () => {
+  // Debugging: hide flag author info on first load
+  document.getElementById("flagImg").style.display = "none";
+  document.getElementById("authorInfo").style.display = "none";
   renderLanguageRadios();
   loadRandomQuote();
   setRandomBackground();
